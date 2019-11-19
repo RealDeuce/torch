@@ -4,31 +4,42 @@ class Torch {
 			let dimRadius = game.settings.get("torch", "dimRadius");
 			let brightRadius = game.settings.get("torch", "brightRadius");
 			let tbutton = $(`<div class="control-icon torch"><i class="fas fa-fire"></i></div>`);
+			let allowEvent = true;
 			if (data.brightLight === brightRadius && data.dimLight === dimRadius) {
 				tbutton.addClass("active");
 			}
+			else if (data.brightLight !== 0 || data.dimLight !== 0) {
+				let disabledIcon = $(`<i class="fas fa-slash" style="position: absolute; color: tomato"></i>`);
+				tbutton.addClass("fa-stack");
+				tbutton.find('i').addClass('fa-stack-1x');
+				disabledIcon.addClass('fa-stack-1x');
+				tbutton.append(disabledIcon);
+				allowEvent = false;
+			}
 			html.find('.col.left').prepend(tbutton);
-			tbutton.find('i').click(ev => {
-				let btn = $(ev.currentTarget.parentElement);
-				let dimRadius = game.settings.get("torch", "dimRadius");
-				let brightRadius = game.settings.get("torch", "brightRadius");
-				ev.preventDefault();
-				ev.stopPropagation();
-				if (data.brightLight === 0 && data.dimLight === 0) {
-					data.brightLight = brightRadius;
-					data.dimLight = dimRadius;
-					btn.addClass("active");
-				}
-				else if (data.brightLight === brightRadius && data.dimLight === dimRadius) {
-					data.brightLight = 0;
-					data.dimLight = 0;
-					btn.removeClass("active");
-				}
-				else {
-					console.log("Schrödinger's Torch... cowardly refusing to open the box.");
-				}
-				app.object.update(canvas.scene._id, {brightLight: data.brightLight, dimLight: data.dimLight});
-			});
+			if (allowEvent) {
+				tbutton.find('i').click(ev => {
+					let btn = $(ev.currentTarget.parentElement);
+					let dimRadius = game.settings.get("torch", "dimRadius");
+					let brightRadius = game.settings.get("torch", "brightRadius");
+					ev.preventDefault();
+					ev.stopPropagation();
+					if (data.brightLight === 0 && data.dimLight === 0) {
+						data.brightLight = brightRadius;
+						data.dimLight = dimRadius;
+						btn.addClass("active");
+					}
+					else if (data.brightLight === brightRadius && data.dimLight === dimRadius) {
+						data.brightLight = 0;
+						data.dimLight = 0;
+						btn.removeClass("active");
+					}
+					else {
+						ui.notifications.error(game.i18n.localize("torch.schrodingersTorch"));
+					}
+					app.object.update(canvas.scene._id, {brightLight: data.brightLight, dimLight: data.dimLight});
+				});
+			}
 		}
 	}
 }

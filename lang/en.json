@@ -4,5 +4,6 @@
 	"torch.playerTorches.name": "Player Torches",
 	"torch.playerTorches.hint": "Allow players to toggle their own torches.",
 	"torch.brightRadius.hint": "How many grid units of bright light to emit.",
-	"torch.dimRadius.hint": "How many grid units of dim light to emit."
+	"torch.dimRadius.hint": "How many grid units of dim light to emit.",
+	"torch.schrodingersTorch": "Schrödinger's Torch... non-torch light emissions currently active"
 }
