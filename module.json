@@ -6,7 +6,7 @@
 	"author": "Deuce",
 	"scripts": ["./torch.js"],
 	"styles": [],
-	"packs": []
+	"packs": [],
 	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
-	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
+	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip"
 }
