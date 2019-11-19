@@ -1,21 +1,26 @@
 class Torch {
 	static addTorchButton(app, html, data) {
-		console.log(data);
 		let tbutton = $(`<div class="control-icon torch"><i class="fas fa-fire"></i></div>`);
+		if (data.brightLight === 20 && data.dimLight === 40) {
+			tbutton.addClass("active");
+		}
 		html.find('.col.left').prepend(tbutton);
 		tbutton.find('i').click(ev => {
-			let update = {};
+			let btn = $(ev.currentTarget.parentElement);
 			ev.preventDefault();
 			ev.stopPropagation();
 			if (data.brightLight === 0 && data.dimLight === 0) {
-				console.log("Turning on the torch...");
 				data.brightLight = 20;
 				data.dimLight = 40;
+				btn.addClass("active");
 			}
 			else if (data.brightLight === 20 && data.dimLight === 40) {
-				console.log("Turning off the torch...");
 				data.brightLight = 0;
 				data.dimLight = 0;
+				btn.removeClass("active");
+			}
+			else {
+				console.log("Schrödinger's Torch... cowardly refusing to open the box.");
 			}
 			app.object.update(canvas.scene._id, {brightLight: data.brightLight, dimLight: data.dimLight});
 		});
