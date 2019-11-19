@@ -124,7 +124,7 @@ Hooks.once("init", () => {
 		default: true,
 		type: Boolean
 	});
-	if (game.system.id !== 'dnd5e') {
+	if (game.system.id === 'dnd5e') {
 		game.settings.register("torch", "gmUsesInventory", {
 			name: game.i18n.localize("torch.gmUsesInventory.name"),
 			hint: game.i18n.localize("torch.gmUsesInventory.hint"),
