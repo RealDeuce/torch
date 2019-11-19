@@ -34,13 +34,13 @@ Hooks.on('ready', () => {
 });
 Hooks.once("init", () => {
 	game.settings.register("torch", "playerTorches", {
-		name: game.i18n.localize("torch.playerTorches.name");
-		hint: game.i18n.localize("torch.playerTorches.hint");
+		name: game.i18n.localize("torch.playerTorches.name"),
+		hint: game.i18n.localize("torch.playerTorches.hint"),
 		scope: "world",
 		config: true,
 		default: false,
 		type: Boolean
 	});
-}
+});
 
 console.log("--- Flame on!");

@@ -2,8 +2,15 @@
 	"name": "torch",
 	"title": "Torch",
 	"description": "Torch HUD Controls",
-	"version": "0.4",
+	"version": "0.5",
 	"author": "Deuce",
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		}
+	],
 	"scripts": ["./torch.js"],
 	"styles": [],
 	"packs": [],
