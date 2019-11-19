@@ -1,10 +1,12 @@
 {
-    "name": "torch",
-    "title": "Torch",
-    "description": "Torch HUD Controls",
-    "version": "0.1",
-    "author": "Deuce",
-    "scripts": ["./torch.js"],
-    "styles": [],
-    "packs": []
+	"name": "torch",
+	"title": "Torch",
+	"description": "Torch HUD Controls",
+	"version": "0.1",
+	"author": "Deuce",
+	"scripts": ["./torch.js"],
+	"styles": [],
+	"packs": []
+	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
+	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
 }
