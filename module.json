@@ -1,0 +1,10 @@
+{
+    "name": "torch",
+    "title": "Torch",
+    "description": "Torch HUD Controls",
+    "version": "0.1",
+    "author": "Deuce",
+    "scripts": ["./torch.js"],
+    "styles": [],
+    "packs": []
+}
