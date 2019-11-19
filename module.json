@@ -2,7 +2,7 @@
 	"name": "torch",
 	"title": "Torch",
 	"description": "Torch HUD Controls",
-	"version": "0.3",
+	"version": "0.4",
 	"author": "Deuce",
 	"scripts": ["./torch.js"],
 	"styles": [],
