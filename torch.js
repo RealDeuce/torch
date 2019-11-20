@@ -124,8 +124,8 @@ class Torch {
 					ev.preventDefault();
 					ev.stopPropagation();
 					if (ev.ctrlKey) {
-						data.brightLight = 0;
-						data.dimLight = 0;
+						data.brightLight = game.settings.get("torch", "offBrightRadius");
+						data.dimLight = game.settings.get("torch", "offDimRadius");
 						app.object.setFlag("torch", "oldValue", null);
 						app.object.setFlag("torch", "newValue", null);
 						btn.removeClass("active");
