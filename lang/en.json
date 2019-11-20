@@ -5,7 +5,12 @@
 	"torch.playerTorches.hint": "Allow players to toggle their own torches.",
 	"torch.brightRadius.hint": "How many grid units of bright light to emit.",
 	"torch.dimRadius.hint": "How many grid units of dim light to emit.",
-	"torch.schrodingersTorch": "Schrödinger's Torch... non-torch light emissions currently active",
 	"torch.gmUsesInventory.name": "GM Uses Inventory",
-	"torch.gmUsesInventory.hint": "If set, when the GM toggles a torch, it will use the actors inventory."
+	"torch.gmUsesInventory.hint": "If set, when the GM toggles a torch, it will use the actors inventory.",
+	"torch.offBrightRadius.name": "Emit bright when off",
+	"torch.offBrightRadius.hint": "How many grid units of bright light to emit when light is toggled off.",
+	"torch.offDimRadius.name": "Emit dim when off.",
+	"torch.offDimRadius.hint": "How many grid units of dim light to emit when light is toggled off.",
+	"torch.turnOffAllLights": "Force bright and dim to configured \"off\" values.",
+	"torch.holdCtrlOnClick": "Hold <span class=\"key\">Ctrl</span> on Click"
 }
