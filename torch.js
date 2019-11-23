@@ -38,7 +38,7 @@ class Torch {
 				}
 				else {
 					if (item.name.toLowerCase() === 'torch') {
-						if (item.data.quantity.value > 0) {
+						if (item.data.quantity > 0) {
 							torches = true;
 							return;
 						}
@@ -76,7 +76,7 @@ class Torch {
 					}
 				}
 				else {
-					if (torch === -1 && item.name.toLowerCase() === 'torch' && item.data.quantity.value > 0) {
+					if (torch === -1 && item.name.toLowerCase() === 'torch' && item.data.quantity > 0) {
 						torch = offset;
 					}
 				}
@@ -85,7 +85,7 @@ class Torch {
 				return;
 
 			// Now, remove a torch from inventory...
-			actor.data.items[torch].data.quantity.value -= 1;
+			actor.data.items[torch].data.quantity -= 1;
 			actor.updateOwnedItem(actor.data.items[torch]);
 		}
 
