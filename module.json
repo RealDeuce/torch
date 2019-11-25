@@ -2,7 +2,7 @@
 	"name": "torch",
 	"title": "Torch",
 	"description": "Torch HUD Controls",
-	"version": "0.10.3",
+	"version": "1.0.0",
 	"author": "Deuce",
 	"languages": [
 		{
@@ -11,7 +11,8 @@
 			"path": "lang/en.json"
 		}
 	],
-	"scripts": ["./torch.js"],
+	"esmodules": ["./torch.js"],
+	"socket": true,
 	"styles": [],
 	"packs": [],
 	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
