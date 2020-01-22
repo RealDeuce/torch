@@ -2,7 +2,7 @@
 	"name": "torch",
 	"title": "Torch",
 	"description": "Torch HUD Controls",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"author": "Deuce",
 	"languages": [
 		{
@@ -17,5 +17,5 @@
 	"packs": [],
 	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
 	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
-	"minimumCoreVersion": "0.4.0"
+	"minimumCoreVersion": "0.4.4"
 }
