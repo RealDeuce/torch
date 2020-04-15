@@ -15,7 +15,7 @@
 	"socket": true,
 	"styles": [],
 	"packs": [],
-	"manifest": "https://raw.githubusercontent.com/MtnTiger/torch/master/module.json",
-	"download": "https://raw.githubusercontent.com/MtnTiger/torch/master/torch.zip",
+	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
+	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
 	"minimumCoreVersion": "0.4.4"
 }
