@@ -9,30 +9,38 @@
 
 class Torch {
 	static async addTorchButton(app, html, data) {
-		function sendRequest(req) {
-			req.from = game.user._id;
-			req.sceneId = canvas.scene._id
-			req.tokenId = app.object.id;
-			if (!data.isGM) {
-				req.addressTo = firstGM();
-				game.socket.emit("module.torch", req);
-			}
-			else {
-				Torch.handleSocketRequest(req);
-			}
-		}
-
-		/*
-		 * Returns the first GM id.
-		 */
-		function firstGM() {
+		async function sendRequest(req) {
+			let scn = game.scenes.get(canvas.scene._id);
+			let frm = game.users.get(game.user._id);
+			let tkn = canvas.tokens.get(app.object.id);
+			let c = tkn.center;
+			let voff = tkn.h;
+			let hoff = tkn.w;
+			let dltoks=[];
 			let i;
 
-			for (i=0; i<game.users.entities.length; i++) {
-				if (game.users.entities[i].data.role >= 4 && game.users.entities[i].data.active)
-					return game.users.entities[i].data._id;
+			switch(req.requestType) {
+				case 'removeDancingLights':
+					scn.data.tokens.forEach(tok => {
+						if (tok.actorId === tkn.actor._id &&
+						    tok.name === 'Dancing Light' &&
+						    tok.dimLight === 20 &&
+						    tok.brightLight === 10) {
+							let dltok = canvas.tokens.get(tok._id);
+							dltoks.push(dltok);
+						}
+					});
+					for (i=0; i<dltoks.length; i++) {
+						await dltoks[i].delete(scn);
+					}
+					break;
+				case 'createDancingLights':
+					await Token.create({"actorData":{}, "actorId":tkn.actor._id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":10, "brightSight":0, "dimLight":20, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":false, "width":1, "x":c.x - hoff, "y":c.y - voff});
+					await Token.create({"actorData":{}, "actorId":tkn.actor._id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":10, "brightSight":0, "dimLight":20, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":false, "width":1, "x":c.x, "y":c.y - voff});
+					await Token.create({"actorData":{}, "actorId":tkn.actor._id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":10, "brightSight":0, "dimLight":20, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":false, "width":1, "x":c.x - hoff, "y":c.y});
+					await Token.create({"actorData":{}, "actorId":tkn.actor._id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":10, "brightSight":0, "dimLight":20, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":false, "width":1, "x":c.x, "y":c.y});
+					break;
 			}
-			ui.notifications.error("No GM available for Dancing Lights!");
 		}
 
 		/*
@@ -184,13 +192,13 @@ class Torch {
 						data.dimLight = game.settings.get("torch", "offDimRadius");
 						await app.object.setFlag("torch", "oldValue", null);
 						await app.object.setFlag("torch", "newValue", null);
-						sendRequest({"requestType": "removeDancingLights"});
+						await sendRequest({"requestType": "removeDancingLights"});
 						btn.removeClass("active");
 					}
 					else if (oldTorch === null || oldTorch === undefined) {	// Turning light on...
 						await app.object.setFlag("torch", "oldValue", data.brightLight + '/' + data.dimLight);
 						if (ht === 'Dancing Lights') {
-							sendRequest({"requestType": "createDancingLights"});
+							await sendRequest({"requestType": "createDancingLights"});
 							await app.object.setFlag("torch", "newValue", 'Dancing Lights');
 						}
 						else {
@@ -205,7 +213,7 @@ class Torch {
 					}
 					else { // Turning light off...
 						if (newTorch === 'Dancing Lights') {
-							sendRequest({"requestType": "removeDancingLights"});
+							await sendRequest({"requestType": "removeDancingLights"});
 						}
 						else {
 							let thereBeLight = oldTorch.split('/');
@@ -221,42 +229,6 @@ class Torch {
 			}
 		}
 	}
-
-	static async handleSocketRequest(req) {
-		if (req.addressTo === undefined || req.addressTo === game.user._id) {
-			let scn = game.scenes.get(req.sceneId);
-			let frm = game.users.get(req.from);
-			let tkn = canvas.tokens.get(req.tokenId);
-			let c = tkn.center;
-			let voff = tkn.h;
-			let hoff = tkn.w;
-			let dltoks=[];
-			let i;
-
-			switch(req.requestType) {
-				case 'removeDancingLights':
-					scn.data.tokens.forEach(tok => {
-						if (tok.actorId === tkn.actor._id &&
-						    tok.name === 'Dancing Light' &&
-						    tok.dimLight === 20 &&
-						    tok.brightLight === 10) {
-							let dltok = canvas.tokens.get(tok.id);
-							dltoks.push(dltok);
-						}
-					});
-					for (i=0; i<dltoks.length; i++) {
-						await dltoks[i].delete(req.sceneId);
-					}
-					break;
-				case 'createDancingLights':
-					await Token.create(req.sceneId, {"name":"Dancing Light","actorId":tkn.actor._id,"disposition":1,"brightLight":10,"dimLight":20,"x":c.x - hoff, "y":c.y - voff, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "scale":0.25});
-					await Token.create(req.sceneId, {"name":"Dancing Light","actorId":tkn.actor._id,"disposition":1,"brightLight":10,"dimLight":20,"x":c.x, "y":c.y - voff, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "scale":0.25});
-					await Token.create(req.sceneId, {"name":"Dancing Light","actorId":tkn.actor._id,"disposition":1,"brightLight":10,"dimLight":20,"x":c.x - hoff, "y":c.y, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "scale":0.25});
-					await Token.create(req.sceneId, {"name":"Dancing Light","actorId":tkn.actor._id,"disposition":1,"brightLight":10,"dimLight":20,"x":c.x, "y":c.y, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "scale":0.25});
-					break;
-			}
-		}
-	}
 }
 
 Hooks.on('ready', () => {
@@ -267,9 +239,6 @@ Hooks.on('ready', () => {
 			'</h4><div class="keys">'+
 			game.i18n.localize("torch.holdCtrlOnClick")+
 			'</div></li></ol>');
-	});
-	game.socket.on("module.torch", request => {
-		Torch.handleSocketRequest(request);
 	});
 });
 Hooks.once("init", () => {
