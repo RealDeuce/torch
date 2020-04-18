@@ -216,7 +216,7 @@ class Torch {
 						await app.object.setFlag("torch", "oldValue", null);
 						btn.removeClass("active");
 					}
-					await app.object.update(canvas.scene._id, {brightLight: data.brightLight, dimLight: data.dimLight});
+					await app.object.update({brightLight: data.brightLight, dimLight: data.dimLight});
 				});
 			}
 		}
