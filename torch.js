@@ -241,7 +241,6 @@ class Torch {
 			let scn = game.scenes.get(req.sceneId);
 			let tkn = scn.data.tokens.find(({_id}) => _id === req.tokenId);
 			let dltoks=[];
-			let i;
 
 			switch(req.requestType) {
 				case 'removeDancingLights':
