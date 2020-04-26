@@ -1,0 +1,16 @@
+{
+	"I18N.MAINTAINERS": ["Chivell"],
+
+	"torch.playerTorches.name": "玩家火炬",
+	"torch.playerTorches.hint": "允许玩家自行开关自己的火炬。",
+	"torch.brightRadius.hint": "发出多少格单位的亮光。",
+	"torch.dimRadius.hint": "发出多少格单位的微光。",
+	"torch.gmUsesInventory.name": "使用库存",
+	"torch.gmUsesInventory.hint": "当GM开关火炬时，将使用角色库存。",
+	"torch.offBrightRadius.name": "关闭时发出亮光",
+	"torch.offBrightRadius.hint": "关闭时发出多少格单位的亮光。",
+	"torch.offDimRadius.name": "关闭时发出微光。",
+	"torch.offDimRadius.hint": "关闭时发出多少格单位的微光。",
+	"torch.turnOffAllLights": "强制亮/微光设置为OFF",
+	"torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 点击"
+}
