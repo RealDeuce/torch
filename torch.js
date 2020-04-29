@@ -138,8 +138,7 @@ class Torch {
 				return;
 
 			// Now, remove a torch from inventory...
-			actor.data.items[torch].data.quantity -= 1;
-			await actor.updateOwnedItem(actor.data.items[torch]);
+			await actor.updateOwnedItem({"_id": actor.data.items[torch]._id, "data.quantity": actor.data.items[torch].data.quantity - 1});
 		}
 
 		// Don't let Dancing Lights have/use torches. :D
