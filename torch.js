@@ -82,9 +82,10 @@ class Torch {
 					}
 					else {
 						if (torches === null) {
-							if (item.name.toLowerCase() === 'torch') {
+							var itemToCheck = game.settings.get("torch", "gmInventoryItemName");
+							if (item.name.toLowerCase() === itemToCheck.toLowerCase()) {
 								if (item.data.quantity > 0) {
-									torches = 'Torch';
+									torches = itemToCheck;
 									return;
 								}
 							}
@@ -129,7 +130,8 @@ class Torch {
 					}
 				}
 				else {
-					if (torch === -1 && item.name.toLowerCase() === 'torch' && item.data.quantity > 0) {
+					var itemToCheck = game.settings.get("torch", "gmInventoryItemName");
+					if (torch === -1 && item.name.toLowerCase() === itemToCheck.toLowerCase() && item.data.quantity > 0) {
 						torch = offset;
 					}
 				}
@@ -289,6 +291,14 @@ Hooks.once("init", () => {
 			config: true,
 			default: false,
 			type: Boolean
+		});
+		game.settings.register("torch", "gmInventoryItemName", {
+			name: game.i18n.localize("torch.gmInventoryItemName.name"),
+			hint: game.i18n.localize("torch.gmInventoryItemName.hint"),
+			scope: "world",
+			config: true,
+			default: "torch",
+			type: String
 		});
 	}
 	game.settings.register("torch", "brightRadius", {
