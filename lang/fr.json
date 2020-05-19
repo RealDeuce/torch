@@ -1,5 +1,5 @@
 {
-	"I18N.MAINTAINERS": ["Deuce"],
+	"I18N.MAINTAINERS": ["Aymeeeric"],
 
 	"torch.playerTorches.name": "Autorisation des joueurs",
 	"torch.playerTorches.hint": "Autoriser les joueurs à allumer leurs propres torches.",
