@@ -1,0 +1,16 @@
+{
+	"I18N.MAINTAINERS": ["Deuce"],
+
+	"torch.playerTorches.name": "Autorisation des joueurs",
+	"torch.playerTorches.hint": "Autoriser les joueurs à allumer leurs propres torches.",
+	"torch.brightRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière vive émise.",
+	"torch.dimRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière faible émise.",
+	"torch.gmUsesInventory.name": "Utilisation de l'inventaire (MJ)",
+	"torch.gmUsesInventory.hint": "Si actif, lorsque le MJ allume une torche, elle sera déduite de l'inventaire du joueur cible.",
+	"torch.offBrightRadius.name": "Émission de lumière faible lorsque la torche est éteinte",
+	"torch.offBrightRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière faible émise (torche éteinte).",
+	"torch.offDimRadius.name": "Émission de lumière vive lorsque la torche est éteinte",
+	"torch.offDimRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière vive émise (torche éteinte).",
+	"torch.turnOffAllLights": "Éteindre l'ensemble des lumières (vives et faibles).",
+	"torch.holdCtrlOnClick": "Maintenir <span class=\"key\">Ctrl</span> lors du clic."
+}
