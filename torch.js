@@ -326,8 +326,8 @@ Hooks.once("init", () => {
 		type: Number
 	});
 	game.settings.register("torch", "offDimRadius", {
-		name: game.i18n.localize("torch.offBrightRadius.name"),
-		hint: game.i18n.localize("torch.offBrightRadius.hint"),
+		name: game.i18n.localize("torch.offDimRadius.name"),
+		hint: game.i18n.localize("torch.offDimRadius.hint"),
 		scope: "world",
 		config: true,
 		default: 0,
