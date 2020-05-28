@@ -8,12 +8,17 @@
 		{
 			"lang": "en",
 			"name": "English",
-			"path": "lang/en.json"
+			"path": "./lang/en.json"
 		},
 		{
 			"lang": "cn",
 			"name": "中文",
-			"path": "lang/cn.json"
+			"path": "./lang/cn.json"
+		},
+		{
+			"lang": "fr",
+			"name": "Français",
+			"path": "./lang/fr.json"
 		}
 	],
 	"esmodules": ["./torch.js"],
@@ -23,5 +28,5 @@
 	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
 	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
 	"minimumCoreVersion": "0.5.4",
-	"compatibleCoreVersion": "0.5.5"
+	"compatibleCoreVersion": "0.5.8"
 }

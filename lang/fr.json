@@ -1,0 +1,19 @@
+{
+	"I18N.LANGUAGE": "Français",
+	"I18N.MAINTAINERS": ["Aymeeeric"],
+
+	"torch.playerTorches.name": "Autorisation des joueurs",
+	"torch.playerTorches.hint": "Autoriser les joueurs à allumer leurs propres torches.",
+	"torch.brightRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière vive émise.",
+	"torch.dimRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière faible émise.",
+	"torch.gmUsesInventory.name": "Utilisation de l'inventaire",
+	"torch.gmUsesInventory.hint": "Si actif, lorsque une torche est allumée, elle sera déduite de l'inventaire du joueur cible.",
+	"torch.gmInventoryItemName.name": "Nom de l'objet à déduire de l'inventaire",
+	"torch.gmInventoryItemName.hint": "Préciser le nom de l'objet à déduire (si l'option est cochée) de l'inventaire des joueurs.",
+	"torch.offBrightRadius.name": "Lumière faible (torche éteinte)",
+	"torch.offBrightRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière faible émise (torche éteinte).",
+	"torch.offDimRadius.name": "Lumière vive (torche éteinte)",
+	"torch.offDimRadius.hint": "Détermine l'étendue (en unité de grille) de la lumière vive émise (torche éteinte).",
+	"torch.turnOffAllLights": "Éteindre l'ensemble des lumières (vives et faibles).",
+	"torch.holdCtrlOnClick": "Maintenir <span class=\"key\">Ctrl</span> lors du clic."
+}
