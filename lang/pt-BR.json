@@ -1,0 +1,18 @@
+{
+	"I18N.MAINTAINERS": ["Innocenti"],
+
+	"torch.playerTorches.name": "Tocha dos jogadores",
+	"torch.playerTorches.hint": "Permite aos jogadores acenderem suas proprias tochas.",
+	"torch.brightRadius.hint": "Quantas unidades de luz plena é emitida.",
+	"torch.dimRadius.hint": "Quantas unidades de luz reduzida é emitida.",
+	"torch.gmUsesInventory.name": "MJ Usa o Inventário",
+	"torch.gmUsesInventory.hint": "se ligado, quando o GM acende uma tocha, isso usará o inventário do jogador.",
+	"torch.gmInventoryItemName.name": "Nome do item no inventário a ser usado",
+	"torch.gmInventoryItemName.hint": "Nome do item do iventário a ser usado se o \"MJ Usa o Inventário\" estiver ligado.",
+	"torch.offBrightRadius.name": "Emissão de luz plena quando desligado",
+	"torch.offBrightRadius.hint": "Quantas unidades de luz plena é emitida quando a luz for desligada.",
+	"torch.offDimRadius.name": "Emissão de luz reduzida quando desligado",
+	"torch.offDimRadius.hint": "Quantas unidades de luz reduzida é emitida quando a luz for desligada.",
+	"torch.turnOffAllLights": "Força luz plena e reduzida aos valores configurados em \"desligada\".",
+	"torch.holdCtrlOnClick": "Segure <span class=\"key\">Ctrl</span> ao Clicar"
+}
