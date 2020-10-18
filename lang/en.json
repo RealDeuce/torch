@@ -15,4 +15,6 @@
 	"torch.offDimRadius.hint": "How many grid units of dim light to emit when light is toggled off.",
 	"torch.turnOffAllLights": "Force bright and dim to configured \"off\" values.",
 	"torch.holdCtrlOnClick": "Hold <span class=\"key\">Ctrl</span> on Click"
+	"torch.dancingLigntVision.name": "Give Dancing Lights Vision.",
+	"torch.dancingLightVision.hint": "When enabled, each dancing light has vision so can be used to reveal areas of the map players can't actually see.",
 }
