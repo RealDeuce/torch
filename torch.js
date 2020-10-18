@@ -303,7 +303,7 @@ Hooks.once("init", () => {
 		});
 	}
 	game.settings.register("torch", "brightRadius", {
-		name: game.i18n.localize("TOKEN.VisionBrightEmit"),
+		name: game.i18n.localize("LIGHT.LightBright"),
 		hint: game.i18n.localize("torch.brightRadius.hint"),
 		scope: "world",
 		config: true,
@@ -311,7 +311,7 @@ Hooks.once("init", () => {
 		type: Number
 	});
 	game.settings.register("torch", "dimRadius", {
-		name: game.i18n.localize("TOKEN.VisionDimEmit"),
+		name: game.i18n.localize("LIGHT.LightDim"),
 		hint: game.i18n.localize("torch.dimRadius.hint"),
 		scope: "world",
 		config: true,
