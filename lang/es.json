@@ -1,0 +1,18 @@
+{
+	"I18N.MAINTAINERS": ["Deuce"],
+
+	"torch.playerTorches.name": "Antorchas de Jugadores",
+	"torch.playerTorches.hint": "Permite que los jugadores activen y desactiven sus propias antorchas.",
+	"torch.brightRadius.hint": "Número de unidades en la rejilla en las que se emite luz brillante.",
+	"torch.dimRadius.hint": "Número de unidades en la rejilla en las que se emite luz tenue.",
+	"torch.gmUsesInventory.name": "GM Usa el Inventario",
+	"torch.gmUsesInventory.hint": "Si se activa, cuando el GM activa una antorcha, se usará el inventario del actor.",
+	"torch.gmInventoryItemName.name": "Nombre del objeto en el Inventario",
+	"torch.gmInventoryItemName.hint": "Nombre del objeto en el Inventario si se activa \"GM Usa el Inventario\".",
+	"torch.offBrightRadius.name": "Emisión Brillante en Apagado",
+	"torch.offBrightRadius.hint": "Número de unidades en la rejilla en las que se emite luz brillante cuando está apagada.",
+	"torch.offDimRadius.name": "Emisión Tenue en Apagado",
+	"torch.offDimRadius.hint": "Número de unidades en la rejilla en las que se emite luz tenue cuando está apagada.",
+	"torch.turnOffAllLights": "Forzar a valores \"off\" tanto la emisión brillante como la tenue.",
+	"torch.holdCtrlOnClick": "Mantenga pulsado <span class=\"key\">Ctrl</span> al hacer clic"
+}
