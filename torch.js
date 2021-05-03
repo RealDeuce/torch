@@ -109,10 +109,10 @@ class Torch {
 		 */
 		async function useTorch() {
 			let torch = -1;
-
-			if (data.isGM && !game.settings.get("torch", "gmUsesInventory"))
-				return;
+			
 			if (game.system.id !== 'dnd5e')
+				return;
+			if (data.isGM && !game.settings.get("torch", "gmUsesInventory"))
 				return;
 			let actor = game.actors.get(data.actorId);
 			if (actor === undefined)
