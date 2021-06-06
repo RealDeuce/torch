@@ -95,7 +95,8 @@ class Torch {
 						if (torches === null) {
 							var itemToCheck = game.settings.get("torch", "gmInventoryItemName");
 							if (item.name.toLowerCase() === itemToCheck.toLowerCase()) {
-								if (item.data.quantity > 0) {
+								let quantity = typeof item.data.quantity !== "undefined" ? item.data.quantity : item.data.data.quantity;
+								if (quantity > 0) {
 									torches = itemToCheck;
 									return;
 								}
@@ -162,8 +163,8 @@ class Torch {
 
 		// Don't let Dancing Lights have/use torches. :D
 		if (data.name === 'Dancing Light' &&
-		    data.dimLight === 20 &&
-		    data.brightLight === 10) {
+		    data.dimLight === 10 &&
+		    data.brightLight === 0) {
 			return;
 		}
 
