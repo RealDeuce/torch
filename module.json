@@ -30,8 +30,8 @@
 	"socket": true,
 	"styles": [],
 	"packs": [],
-	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
-	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
+	"manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/module.json",
+	"download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/torch.zip",
 	"minimumCoreVersion": "0.7.5",
 	"compatibleCoreVersion": "0.8.6"
 }
