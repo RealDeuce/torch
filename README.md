@@ -16,6 +16,7 @@ This module was originally written by @Deuce. After several months of no activit
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
 
+* 1.2.1 - June 11, 2021 - (Lupestro) Cleaned up console logging noise I had created
 * 1.2.0 - June 10, 2021 - (Lupestro) Updated for 0.8.6, but ensured it still functions in 0.7.x.
 * 1.1.4 - October 21, 2020 - (Stephen Hurd) Marked as 0.7.5 compatible.
 * 1.1.3 - October 18, 2020 - (Stephen Hurd) Fix spelling.

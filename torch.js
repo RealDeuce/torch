@@ -255,7 +255,6 @@ class Torch {
 						btn.removeClass("active");
 						await tokenFlagHolder.update({brightLight: data.brightLight, dimLight: data.dimLight});
 					}
-					console.log("Click completed");
 				});
 			}
 		}
