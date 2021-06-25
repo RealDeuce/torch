@@ -16,13 +16,15 @@ This module was originally written by @Deuce. After several months of no activit
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
 
+* 1.3.0 - June 25, 2021 - (Lupestro) Incorporated pending Taiwan Chinese and Brazilian Portuguese translations from zeteticl and rinnocenti.
 * 1.2.1 - June 11, 2021 - (Lupestro) Cleaned up console logging noise I had created
 * 1.2.0 - June 10, 2021 - (Lupestro) Updated for 0.8.6, but ensured it still functions in 0.7.x.
 * 1.1.4 - October 21, 2020 - (Stephen Hurd) Marked as 0.7.5 compatible.
 * 1.1.3 - October 18, 2020 - (Stephen Hurd) Fix spelling.
 * 1.1.2 - October 18, 2020 - (Stephen Hurd) Fix JSON syntax.
 * 1.1.1 - October 18, 2020 - (Stephen Hurd) Name adjustment.
-* 1.1.0 - October 18, 2020 - (Jose E Lozano) Add Spanish, (Stephen Hurd) Fix bright/dim radius of Dancing Lights.
+* 1.1.0 - October 18, 2020 - (Jose E Lozano) Add Spanish, 
+                             (Stephen Hurd) Fix bright/dim radius of Dancing Lights.
 * 1.0.9 - May 28, 2020 - (Stephen Hurd) Marked as 0.6.0 compatible.
 * 1.0.8 - May 19, 2020 - (Aymeric DeMoura) Add French, Marked as 0.5.8 compatible.
 * 1.0.7 - April 29, 2020 - (Stephen Hurd) Add Chinese, fix torch inventory usage.
