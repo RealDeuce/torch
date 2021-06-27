@@ -22,7 +22,7 @@
 		},
 		{
 			"lang": "es",
-			"name": "Spanish",
+			"name": "Español",
 			"path": "./lang/es.json"
 		}
 	],
@@ -30,6 +30,7 @@
 	"socket": true,
 	"styles": [],
 	"packs": [],
+	"url": "https://github.com/League-of-Foundry-Developers/torch",
 	"manifest": "https://raw.githubusercontent.com/RealDeuce/torch/master/module.json",
 	"download": "https://raw.githubusercontent.com/RealDeuce/torch/master/torch.zip",
 	"minimumCoreVersion": "0.5.4",
