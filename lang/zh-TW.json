@@ -1,6 +1,7 @@
 {
-    "I18N.MAINTAINERS": ["Chivell"],
-   
+    "I18N.MAINTAINERS": [
+        "Chivell"
+    ],
     "torch.playerTorches.name": "玩家火炬",
     "torch.playerTorches.hint": "允許玩家自行開關自己的火炬。",
     "torch.brightRadius.hint": "發出多少格單位的亮光。",
@@ -12,6 +13,9 @@
     "torch.offDimRadius.name": "關閉時發出微光。",
     "torch.offDimRadius.hint": "關閉時發出多少格單位的微光。",
     "torch.turnOffAllLights": "強制亮/微光設置為OFF",
-    "torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 點擊"
-    }
-   
+    "torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 點擊",
+    "torch.gmInventoryItemName.name": "使用庫存物品的名稱",
+    "torch.gmInventoryItemName.hint": "如果啓用了\"GM使用庫存\"，則使用庫存物品的名稱。",
+    "torch.dancingLightVision.name": "賦予舞動燈火視野。",
+    "torch.dancingLightVision.hint": "啓用後，每個舞動燈火都擁有視野，因此可用來顯示玩家實際上無法看到的地圖區域。"
+}
