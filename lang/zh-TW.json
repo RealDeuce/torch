@@ -1,7 +1,6 @@
 {
-    "I18N.MAINTAINERS": [
-        "Chivell"
-    ],
+    "I18N.MAINTAINERS": ["Chivell"],
+    
     "torch.playerTorches.name": "玩家火炬",
     "torch.playerTorches.hint": "允許玩家自行開關自己的火炬。",
     "torch.brightRadius.hint": "發出多少格單位的亮光。",

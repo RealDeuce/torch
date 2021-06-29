@@ -11,6 +11,7 @@ Additionally, in D&D5e only:
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
 
+* 1.3.1 - June 29, 2021 - (Lupestro) Updated zh-tw translation from zeteticl and pt-br translation from rinnocenti to 100% of strings. Thanks y'all!
 * 1.3.0 - June 25, 2021 - (Lupestro) Incorporated pending Taiwan Chinese and Brazilian Portuguese translations from zeteticl and rinnocenti.
 * 1.2.1 - June 11, 2021 - (Lupestro) Cleaned up console logging noise I had created
 * 1.2.0 - June 10, 2021 - (Lupestro) Updated for 0.8.6, but ensured it still functions in 0.7.x.
@@ -40,8 +41,8 @@ The following is the current status of translation. Some features have arrived, 
 | zh-cn | `[#######---]` 12/16 (75%) | xticime |
 | es    | `[#########-]` 14/16 (87%) | lozalojo |
 | fr    | `[#########-]` 14/16 (87%) | Aymeeric |
-| pt-br | `[#########-]` 14/16 (87%) | rinnocenti |
-| zh-tw | `[#######---]` 12/16 (75%) | zeteticl |
+| pt-br | `[##########]` 16/16 (100%) | rinnocenti |
+| zh-tw | `[##########]` 16/16 (100%) | zeteticl |
 
 PRs for further translations will be dealt with promptly. While German, Japanese, and Korean are most especially desired - our translation story seems deeply incomplete without them - all others are welcome. 
 
