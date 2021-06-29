@@ -11,6 +11,7 @@ Additionally, in D&D5e only:
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
 
+* 1.3.2 - June 29, 2021 - (Lupestro, zarmstrong, lozalojo) Spanish updates and URL in module.json
 * 1.3.1 - June 29, 2021 - (Lupestro) Updated zh-tw translation from zeteticl and pt-br translation from rinnocenti to 100% of strings. Thanks y'all!
 * 1.3.0 - June 25, 2021 - (Lupestro) Incorporated pending Taiwan Chinese and Brazilian Portuguese translations from zeteticl and rinnocenti.
 * 1.2.1 - June 11, 2021 - (Lupestro) Cleaned up console logging noise I had created
@@ -38,9 +39,9 @@ The following is the current status of translation. Some features have arrived, 
 | Language | Completion | Contributors |
 | -------- | ---------- | ------------ |
 | en    | `[##########]` 16/16 (100%) | deuce |
-| zh-cn | `[#######---]` 12/16 (75%) | xticime |
-| es    | `[#########-]` 14/16 (87%) | lozalojo |
-| fr    | `[#########-]` 14/16 (87%) | Aymeeric |
+| zh-cn | `[#######---]` 12/16 (75%)  | xticime |
+| es    | `[##########]` 14/16 (100%) | lozalojo |
+| fr    | `[#########-]` 14/16 (87%)  | Aymeeric |
 | pt-br | `[##########]` 16/16 (100%) | rinnocenti |
 | zh-tw | `[##########]` 16/16 (100%) | zeteticl |
 
