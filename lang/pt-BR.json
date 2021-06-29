@@ -14,5 +14,7 @@
 	"torch.offDimRadius.name": "Emissão de luz reduzida quando desligado",
 	"torch.offDimRadius.hint": "Quantas unidades de luz reduzida é emitida quando a luz for desligada.",
 	"torch.turnOffAllLights": "Força luz plena e reduzida aos valores configurados em \"desligada\".",
-	"torch.holdCtrlOnClick": "Segure <span class=\"key\">Ctrl</span> ao Clicar"
+	"torch.holdCtrlOnClick": "Segure <span class=\"key\">Ctrl</span> ao Clicar",
+	"torch.dancingLightVision.name": "Dar Visão de Luz Dançantes.", 
+	"torch.dancingLightVision.hint": "Quando ativado, cada luz dançante que tiver visão pode ser usado para revelar areas do mapa que os jogadores não podem ver realmente."
 }
