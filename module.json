@@ -42,6 +42,7 @@
 	"packs": [],
 	"manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/module.json",
 	"download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/torch.zip",
+	"url": "https://github.com/League-of-Foundry-Developers/torch",
 	"minimumCoreVersion": "0.7.5",
 	"compatibleCoreVersion": "0.8.8"
 }
