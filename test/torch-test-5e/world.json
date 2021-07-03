@@ -1,0 +1,23 @@
+{
+  "name": "torch-test-5e",
+  "title": "Torch Test DnD5e",
+  "description": "",
+  "authors": [],
+  "flags": {},
+  "version": "1.0.0",
+  "scripts": [],
+  "esmodules": [],
+  "styles": [],
+  "languages": [],
+  "packs": [],
+  "system": "dnd5e",
+  "dependencies": [],
+  "socket": false,
+  "protected": false,
+  "minimumCoreVersion" : "0.7.6",
+  "compatibleCoreVersion": "0.8.8",
+  "resetKeys": false,
+  "safeMode": false,
+  "manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/testability/test/torch-test-5e/world.json",
+  "download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/testability/test/torch-test-5e/torch-test-5e.zip"
+}

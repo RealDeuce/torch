@@ -1,0 +1,23 @@
+{
+  "name": "torch-test-simple",
+  "title": "Torch Test Simple",
+  "description": "",
+  "authors": [],
+  "flags": {},
+  "version": "1.0.0",
+  "scripts": [],
+  "esmodules": [],
+  "styles": [],
+  "languages": [],
+  "packs": [],
+  "system": "worldbuilding",
+  "dependencies": [],
+  "socket": false,
+  "protected": false,
+  "minimumCoreVersion" : "0.7.6",
+  "compatibleCoreVersion": "0.8.8",
+  "resetKeys": false,
+  "safeMode": false,
+  "manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/testability/test/torch-test-simple/world.json",
+  "download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/testability/test/torch-test-simple/torch-test-simple.zip"
+}
