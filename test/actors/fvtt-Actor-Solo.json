@@ -1,0 +1,76 @@
+{
+  "_id": "2vpQ7lAS1eliDpcl",
+  "name": "Solo",
+  "type": "character",
+  "data": {
+    "biography": "",
+    "health": {
+      "value": 10,
+      "min": 0,
+      "max": 10
+    },
+    "power": {
+      "value": 5,
+      "min": 0,
+      "max": 5
+    },
+    "attributes": {},
+    "groups": {}
+  },
+  "sort": 100001,
+  "flags": {
+    "exportSource": {
+      "world": "torch-test-simple",
+      "system": "worldbuilding",
+      "coreVersion": "0.7.10",
+      "systemVersion": 0.4
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "token": {
+    "flags": {
+      "torch": {
+        "oldValue": null,
+        "newValue": null
+      }
+    },
+    "name": "Solo",
+    "displayName": 50,
+    "img": "icons/svg/mystery-man.svg",
+    "tint": "",
+    "width": 1,
+    "height": 1,
+    "scale": 1,
+    "mirrorX": false,
+    "mirrorY": false,
+    "lockRotation": false,
+    "rotation": 0,
+    "vision": true,
+    "dimSight": 0,
+    "brightSight": 0,
+    "dimLight": 0,
+    "brightLight": 0,
+    "sightAngle": 360,
+    "lightAngle": 360,
+    "lightColor": "#f93f01",
+    "lightAlpha": 0.49,
+    "lightAnimation": {
+      "type": "",
+      "speed": 5,
+      "intensity": 5
+    },
+    "actorId": "2vpQ7lAS1eliDpcl",
+    "actorLink": false,
+    "disposition": 1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": ""
+    },
+    "bar2": {
+      "attribute": ""
+    },
+    "randomImg": false
+  },
+  "items": [],
+  "effects": []
+}

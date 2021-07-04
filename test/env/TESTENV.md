@@ -1,4 +1,4 @@
-# Test Environment for Foundry Modules
+# Test Environment for Foundry ModulesSolo
 
 ## Setup
 
@@ -29,13 +29,20 @@ For each version of Foundry you'll be testing with, set it up for testing:
 
 1. Restart the server using vttstart.
 2. Connect to the site on the port you assigned.
-3. Install the test worlds. You should be prompted to install the systems and modules required by the world.
+3. Install the systems, then the modules, and then the test worlds. 
     * For Torch:
-      * Worlds: `torch-test-simple` and `torch-test-dnd5e`
       * Systems: `DnD5e` and `Simple Worldbuilding System`
       * Module: `Translation: Spanish \[Core]`
+      * Worlds: `torch-test-simple` and `torch-test-dnd5e`:
+        * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-simple/world.json
+        * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-5e/world.json
+4. Install the module under test into the test area.
+5. Enter each test world and use Manage Modules under Game Settings to connect up its dependencies (including the module under test). 
+  * Worlds are built with the oldest version of Foundry that the tests support. 
+  * If you are installing to a newer Foundry version, the first time you start the test world, it may prompt you to upgrade its data. 
+  * This is expected. Allow it.
 
-You should be ready to test. 
+Once you've completed these steps, you should be ready to test. 
 
 ## Testing in the test worlds - Torch
 
@@ -65,13 +72,7 @@ The following actors should be sufficient for all the tests without further conf
 * Bic (DnD5e: has spells and a candle, but neither supported cantrip nor a torch)
 
 ## Adapting technique to other modules
-* Build and zip a world for each system you support. 
-* Edit the world.json file to add dependencies for all modules the world depends upon.
-* Include a dependency on the core translation for at least one language that your module supports.
-  * Most modules will have a mix of translations drawn from core and their own translations.
-  * Glancing at settings in that language will identify any new strings added that will need internationalization (using strings instead of literals in the code) or localization. 
-  * If you wish, you can install the core translations for *all* the languages you support.
-  * However, comparison of strings files against the language you do the glance is often enough.
+* Build and zip a world for each system you support. Use the oldest version of Foundry you intend to support.
 * Include in the world all scenes, players, and actors you will need for any test in that system. 
   * Include enough players for all relevant privilege levels and interactions needed for testing. This will probably include, at a minimum, one actor for each privilege level, but may need more. Name them so you can remember what they are.
   * Include enough actors to have all relevant combinations (classes, items, spells, etc.) preconfigured in individual actors, named so you can pick them easily. It is a waste of time to bling them up more than you need to identify them easily in the scene.
@@ -81,4 +82,7 @@ The following actors should be sufficient for all the tests without further conf
   * Adjusting the configuration of the module and perhaps the core language.
   * Controlling the right actor as the right player and walking it through its paces.
   * There will be very little to reset at the end of the test, so you can flow from test to test quickly.
-* Keep the zip and the world.json in your source control under a directory named for the world. For Torch, I keep these and the testcases checklist in the test directory.
+* Keep the zip and the world.json in your source control under a directory named for the world. 
+  * For Torch, I keep a directory for each world in the test subdirectory, for easy access from the web.
+  * Update the manifest and download items in your world files to point to the areas involved before making the zip.
+
