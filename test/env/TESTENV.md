@@ -6,12 +6,20 @@
 2. Copy the contents of this directory into it.
 3. Download the Linux/Node zips for all the versions of FoundryVTT you want to test with
 4. Extract them to subdirectory trees of the same name in the base directory.
-5. Edit start.bat and/or start.sh to reflect the Foundry VTT versions you're testing with.
+5. Edit `vttstart.bat` and/or `vttstart.sh` to reflect the Foundry VTT versions you're testing with.
   - The version that is invoked when you don't supply a parameter should be the current shipping version
+  - These are the lines in `vttstart.bat`:
 ```
-if "%1"=="" SET VTTVER=foundryvtt-0.8.8
-if "%1"=="7" SET VTTVER=foundryvtt-0.8.8
-if "%1"=="8" SET VTTVER=foundryvtt-0.7.10
+IF "%1"=="" SET VTTNUM=8
+if "%VTTNUM%"=="8" SET VTTVER=foundryvtt-0.8.8
+if "%VTTNUM%"=="7" SET VTTVER=foundryvtt-0.7.10
+```
+  - These are the lines in `vttstart.sh` - the 8 on the case statement sets the default version to use:
+```
+case ${1:-8} in
+  7) vttver="foundryvtt-0.7.10";;
+  8) vttver="foundryvtt-0.8.8";;
+esac
 ```
 For each version of Foundry you'll be testing with, run it once to configure Foundry:
 
