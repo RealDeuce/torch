@@ -8,9 +8,9 @@
 4. Extract them to subdirectory trees of the same name in the base directory.
 5. Edit `vttstart.bat` and/or `vttstart.sh` to reflect the Foundry VTT versions you're testing with.
   - The version that is invoked when you don't supply a parameter should be the current shipping version
-  - These are the lines in `vttstart.bat`:
+  - These are the lines in `vttstart.bat` - the 8 on the first line sets the default version to use:
 ```
-IF "%1"=="" SET VTTNUM=8
+IF "%1"=="" ( SET "VTTNUM=8" ) ELSE ( SET "VTTNUM=%1" )
 if "%VTTNUM%"=="8" SET VTTVER=foundryvtt-0.8.8
 if "%VTTNUM%"=="7" SET VTTVER=foundryvtt-0.7.10
 ```
@@ -40,15 +40,20 @@ For each version of Foundry you'll be testing with, set it up for testing:
 3. Install the systems, then the modules, and then the test worlds. 
     * For Torch:
       * Systems: `DnD5e` and `Simple Worldbuilding System`
-      * Module: `Translation: Spanish \[Core]`
+      * Modules: `Translation: Spanish \[Core]` and the module under test
       * Worlds: `torch-test-simple` and `torch-test-dnd5e`:
         * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-simple/world.json
         * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-5e/world.json
-4. Install the module under test into the test area.
-5. Enter each test world and use Manage Modules under Game Settings to connect up its dependencies (including the module under test). 
-  * Worlds are built with the oldest version of Foundry that the tests support. 
-  * If you are installing to a newer Foundry version, the first time you start the test world, it may prompt you to upgrade its data. 
-  * This is expected. Allow it.
+5. Enter each test world and take a good look around. (Trust but verify :) )
+    * Worlds are built with the oldest version of Foundry that the tests support. If you are installing to a newer Foundry version, the first time you start the test world, it may prompt you to upgrade its data. 
+      * This is expected. Allow it.
+    * Check Manage Modules under Game Settings.
+      * If you installed your systems and modules, including the module under test, **before** installing the worlds, the dependencies should already be hooked up. 
+      * Otherwise, you may have to check a box or two.
+    * Take a look at the sheets of the actors in each scene. 
+      * Actors should already be in the intended scene for testing.
+      * Each actor should already have the expected mix of resources for their test role.
+
 
 Once you've completed these steps, you should be ready to test. 
 
@@ -64,7 +69,7 @@ Each world has one player named for each level of trust:
 
 Each world has two scenes, a primary scene for most of the testing, and a secondary scene so that the gamemaster and the player can be in separate scenes (matters for some tests):
 
-* Ballroom - preset with all characters there
+* Ballroom - preset with all characters for the intended system in place
 * Kitchen - no characters
 
 The following actors should be sufficient for all the tests without further configuration. You may need to adjust the quantity of torches from time to time as they are consumed.
@@ -77,7 +82,7 @@ The following actors should be sufficient for all the tests without further conf
 * Caster (DnD5e: both Light and Dancing Lights cantrips)
 * Backup (DnD5e: both Light cantrip and a Torch)
 * Versatile (DnD5e: both cantrips and a Torch)
-* Bic (DnD5e: has spells and a candle, but neither supported cantrip nor a torch)
+* Bic (DnD5e: has many spells and light sources, including things with Torch or Light in the name, but has neither of the supported cantrips nor a simple torch)
 
 ## Adapting technique to other modules
 * Build and zip a world for each system you support. Use the oldest version of Foundry you intend to support.
@@ -85,7 +90,7 @@ The following actors should be sufficient for all the tests without further conf
   * Include enough players for all relevant privilege levels and interactions needed for testing. This will probably include, at a minimum, one actor for each privilege level, but may need more. Name them so you can remember what they are.
   * Include enough actors to have all relevant combinations (classes, items, spells, etc.) preconfigured in individual actors, named so you can pick them easily. It is a waste of time to bling them up more than you need to identify them easily in the scene.
   * Unless it directly impacts testing, configure each actor with all players as owner, so you can test all your scenarios without reconfiguring their relationships.
-  * Place all actors in the scenes in which they will be tested. I usually draw marks in the scene for where particular actors should initially stand with regard to walls, etc. That way if you need to move them for a particular test, you can move them back consistently.
+  * Place all actors in the scenes in which they will be tested. You may wish to draw marks in the scene for where particular actors should initially stand with regard to walls, etc. That way if you need to move them for a particular test, you can move them back consistently.
 * If you do it this way, executing most of your test scenarios will involve:
   * Adjusting the configuration of the module and perhaps the core language.
   * Controlling the right actor as the right player and walking it through its paces.
