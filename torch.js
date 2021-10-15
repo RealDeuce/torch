@@ -20,7 +20,7 @@ class Torch {
 				{"actorData":{}, "actorId":tkn.actor.id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":v, "width":1, "x":c.x, "y":c.y - voff},
 				{"actorData":{}, "actorId":tkn.actor.id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":v, "width":1, "x":c.x - hoff, "y":c.y},
 				{"actorData":{}, "actorId":tkn.actor.id, "actorLink":false, "bar1":{"attribute":""}, "bar2":{"attribute":""}, "brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, "displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, "displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, "disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, "flags":{}, "height":1, "hidden":false, "img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", "lightAlpha":1, "lightAngle":360, "lockRotation":false, "mirrorX":false, "name":"Dancing Light", "randomimg":false, "rotation":0, "scale":0.25, "sightAngle":360, "vision":v, "width":1, "x":c.x, "y":c.y}];
-			
+
 			if (canvas.scene.createEmbeddedDocuments) { // 0.8
 				await canvas.scene.createEmbeddedDocuments("Token", tokens, {"temporary":false, "renderSheet":false});
 			} else {
@@ -131,7 +131,7 @@ class Torch {
 				return;
 
 			// First, check for the cantrips...
-			actor.data.items.forEach((item) => { 
+			actor.data.items.forEach((item) => {
 				if (item.type === 'spell') {
 					if (item.name === 'Light') {
 						torch = -2;
@@ -142,9 +142,9 @@ class Torch {
 						return;
 					}
 				}
-				else { 
+				else {
 					var itemToCheck = game.settings.get("torch", "gmInventoryItemName");
-					if (torch === -1 && item.name.toLowerCase() === itemToCheck.toLowerCase() && 
+					if (torch === -1 && item.name.toLowerCase() === itemToCheck.toLowerCase() &&
 						(item.data.data ? item.data.data.quantity : item.data.quantity) > 0) {
 						torchItem = item;
 					}
@@ -154,10 +154,12 @@ class Torch {
 				return;
 
 			// Now, remove a torch from inventory...
-			if (torchItem.data.data) { //0.8
-				await torchItem.update({"data.quantity": torchItem.data.data.quantity - 1});
-			} else {
-				await actor.updateOwnedItem({"_id": torchItem._id, "data.quantity": torchItem.data.quantity - 1});
+			if (torch === -1) { // We are not using Light or Dancing Lights
+				if (torchItem.data.data) { //0.8
+					await torchItem.update({"data.quantity": torchItem.data.data.quantity - 1});
+				} else {
+					await actor.updateOwnedItem({"_id": torchItem._id, "data.quantity": torchItem.data.quantity - 1});
+				}
 			}
 		}
 
@@ -235,8 +237,8 @@ class Torch {
 							await tokenFlagHolder.setFlag("torch", "newValue", data.brightLight + '/' + data.dimLight);
 						}
 						btn.addClass("active");
-						// The token light data update must happen before we call useTorch(). 
-						// Updating the quantity on the token's embedded torch item, which happens inside useTorch(), triggers a HUD refresh. 
+						// The token light data update must happen before we call useTorch().
+						// Updating the quantity on the token's embedded torch item, which happens inside useTorch(), triggers a HUD refresh.
 						// If the token light data isn't updated before that happens, the fresh HUD won't reflect the torch state we just changed.
 						await tokenFlagHolder.update({brightLight: data.brightLight, dimLight: data.dimLight});
 						await useTorch();
