@@ -1,3 +1,4 @@
+import { hookTests } from "./test/quench-hook.js";
 /*
  * ----------------------------------------------------------------------------
  * "THE BEER-WARE LICENSE" (Revision 42):
@@ -190,7 +191,7 @@ class Torch {
 				// If newTorch is still set, light hasn't changed.
 				tbutton.addClass("active");
 			}
-			else if ((data.brightLight >= brightRadius && data.dimLight >= dimRadius && ht !== 'Dancing Lights') || ht === null) {
+			else if ((data.brightLight > brightRadius && data.dimLight > dimRadius && ht !== 'Dancing Lights') || ht === null) {
 				/*
 				 * If you don't have a torch, *or* you're already emitting more light than a torch,
 				 * disallow the torch button
@@ -306,7 +307,11 @@ Hooks.on('ready', () => {
 		Torch.handleSocketRequest(request);
 	});
 });
+
+hookTests();
+
 Hooks.once("init", () => {
+
 	game.settings.register("torch", "playerTorches", {
 		name: game.i18n.localize("torch.playerTorches.name"),
 		hint: game.i18n.localize("torch.playerTorches.hint"),
@@ -375,4 +380,4 @@ Hooks.once("init", () => {
 	});
 });
 
-console.log("--- Flame on!");
+console.log("Torch | --- Flame on!");
