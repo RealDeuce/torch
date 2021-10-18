@@ -8,83 +8,43 @@
  */
 
 class Torch {
+
 	static async createDancingLights(tokenId) {
 		let token = canvas.tokens.get(tokenId);
+		let v = game.settings.get("torch", "dancingLightVision");
+		let dancingLight = {
+			"actorData":{}, "actorId":token.actor.id, "actorLink":false, 
+			"bar1":{"attribute":""}, "bar2":{"attribute":""}, 
+			"brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, 
+			"displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, 
+			"displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, 
+			"disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, 
+			"flags":{}, "height":1, "hidden":false, 
+			"img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", 
+			"lightAlpha":1, "lightAngle":360, "lockRotation":false, 
+			"name":"Dancing Light", "randomimg":false, 
+			"rotation":0, "scale":0.25, "mirrorX":false, 
+			"sightAngle":360, "vision":v, "width":1
+		};
 		let voff = token.h;
 		let hoff = token.w;
 		let c = token.center;
-		let v = game.settings.get("torch", "dancingLightVision")
 		let tokens = [
-			{
-				"actorData":{}, "actorId":token.actor.id, "actorLink":false, 
-				"bar1":{"attribute":""}, "bar2":{"attribute":""}, 
-				"brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, 
-				"displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, 
-				"displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, 
-				"disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, 
-				"flags":{}, "height":1, "hidden":false, 
-				"img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", 
-				"lightAlpha":1, "lightAngle":360, "lockRotation":false, 
-				"name":"Dancing Light", "randomimg":false, 
-				"rotation":0, "scale":0.25, "mirrorX":false, 
-				"sightAngle":360, "vision":v, "width":1, 
-				"x":c.x - hoff, "y":c.y - voff
-			},
-			{
-				"actorData":{}, "actorId":token.actor.id, "actorLink":false, 
-				"bar1":{"attribute":""}, "bar2":{"attribute":""}, 
-				"brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, 
-				"displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, 
-				"displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, 
-				"disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, 
-				"flags":{}, "height":1, "hidden":false, 
-				"img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", 
-				"lightAlpha":1, "lightAngle":360, "lockRotation":false, 
-				"name":"Dancing Light", "randomimg":false, 
-				"rotation":0, "scale":0.25, "mirrorX":false, 
-				"sightAngle":360, "vision":v, "width":1, 
-				"x":c.x, "y":c.y - voff
-			},
-			{
-				"actorData":{}, "actorId":token.actor.id, "actorLink":false, 
-				"bar1":{"attribute":""}, "bar2":{"attribute":""}, 
-				"brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, 
-				"displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, 
-				"displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, 
-				"disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, 
-				"flags":{}, "height":1, "hidden":false, 
-				"img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", 
-				"lightAlpha":1, "lightAngle":360, "lockRotation":false, 
-				"name":"Dancing Light", "randomimg":false, 
-				"rotation":0, "scale":0.25, "mirrorX":false, 
-				"sightAngle":360, "vision":v, "width":1, 
-				"x":c.x - hoff, "y":c.y
-			},
-			{
-				"actorData":{}, "actorId":token.actor.id, "actorLink":false, 
-				"bar1":{"attribute":""}, "bar2":{"attribute":""}, 
-				"brightLight":0, "brightSight":0, "dimLight":10, "dimSight":0, 
-				"displayBars":CONST.TOKEN_DISPLAY_MODES.NONE, 
-				"displayName":CONST.TOKEN_DISPLAY_MODES.HOVER, 
-				"disposition":CONST.TOKEN_DISPOSITIONS.FRIENDLY, 
-				"flags":{}, "height":1, "hidden":false, 
-				"img":"systems/dnd5e/icons/spells/light-air-fire-1.jpg", 
-				"lightAlpha":1, "lightAngle":360, "lockRotation":false, 
-				"name":"Dancing Light", "randomimg":false, 
-				"rotation":0, "scale":0.25, "mirrorX":false, 
-				"sightAngle":360, "vision":v, "width":1, 
-				"x":c.x, "y":c.y
-			}
+			Object.assign({"x": c.x - hoff, "y": c.y - voff}, dancingLight),
+			Object.assign({"x": c.x,        "y": c.y - voff}, dancingLight),
+			Object.assign({"x": c.x - hoff, "y": c.y       }, dancingLight),
+			Object.assign({"x": c.x,        "y": c.y       }, dancingLight)
 		];
 
-		if (canvas.scene.createEmbeddedDocuments) { // 0.8
+		if (canvas.scene.createEmbeddedDocuments) { // 0.8 or higher
 			await canvas.scene.createEmbeddedDocuments(
 				"Token", tokens, {"temporary":false, "renderSheet":false});
-		} else {
+		} else { // 0.7 or lower
 			await canvas.scene.createEmbeddedEntity(
 				"Token", tokens, {"temporary":false, "renderSheet":false});
 		}
 	}
+
 	/*
 	 * Send a request to the GM to perform the operation or (if you are a GM)
 	 * perform it yourself.
@@ -120,18 +80,17 @@ class Torch {
 	}
 
 	/*
-		* Identify the type of light source we will be using.
-		* If not D&D5e, either a player or GM "fiat-lux".
-		* IF DND5e:
-		* - One of the spells if you've got it - first Dancing Lights then Light.
-		* - Otherwise, the specified torch item if you've got it.
-		* - Failing all of those, a GM "fiat-lux" or none.
-		*/
-
-	static async getLightSourceType(actorId, itemName) {
+	 * Identify the type of light source we will be using.
+	 * If not D&D5e, either a player or GM "fiat-lux".
+	 * IF DND5e:
+	 * - One of the spells if you've got it - first Dancing Lights then Light.
+	 * - Otherwise, the specified torch item if you've got it.
+	 * - Failing all of those, a GM "fiat-lux" or none.
+	 */
+	static getLightSourceType(actorId, itemName) {
 		if (game.system.id !== 'dnd5e') {
 			let playersControlTorches = game.settings.get("torch", "playerTorches");
-			return playersControlTorches ? 'Player' : game.user.isGM ? 'GM' : '';
+			return game.user.isGM ? 'GM' : playersControlTorches ? 'Player' :  '';
 		} else {
 			let items = Array.from(game.actors.get(actorId).data.items);
 			let interestingItems = items
@@ -150,8 +109,8 @@ class Torch {
 			
 			// Item if available
 			if (interestingItems.length > 0) {
-				let torchItem = items.filter( (item) => {
-					return item.name.toLowerCase() === itemName.toLowerCase() 
+				let torchItem = items.find( (item) => {
+					return item.name.toLowerCase() === itemName.toLowerCase();
 				});
 				let quantity = torchItem.data.data 
 					? torchItem.data.data.quantity 
@@ -164,6 +123,9 @@ class Torch {
 		}
 	}
 
+	/*
+	* Track inventory for torch uses if we are using a torch as our light source.
+	*/
 	static async consumeTorch(actorId) {
 		// Protect against all conditions where we should not consume a torch
 		if (game.system.id !== 'dnd5e')
@@ -197,24 +159,24 @@ class Torch {
 	}
 
 	/*
-	* Performs inventory tracking for torch uses if we are using a torch as our light source.
-	*/
+	 * Add a torch button to the Token HUD - called from TokenHUD render hook
+	 */
 	static async addTorchButton(tokenHUD, hudHtml, hudData) {
 
 		let tokenId = tokenHUD.object.id;
 		let tokenDoc = tokenHUD.object.document ? tokenHUD.object.document : tokenHUD.object;
 		let itemName = game.settings.get("torch", "gmInventoryItemName");
-		let lightSource = Torch.getLightSourceType(hudData.actorId, itemName);
+		let torchDimRadius = game.settings.get("torch", "dimRadius");
+		let torchBrightRadius = game.settings.get("torch", "brightRadius");
 
 		// Don't let the tokens we create for Dancing Lights have or use torches. :D
-		if (data.name === 'Dancing Light' && 
+		if (hudData.name === 'Dancing Light' && 
 		    hudData.dimLight === 10 && hudData.brightLight === 0) {
 			return;
 		}
 
+		let lightSource = Torch.getLightSourceType(hudData.actorId, itemName);
 		if (lightSource !== '') {
-			let torchDimRadius = game.settings.get("torch", "dimRadius");
-			let torchBrightRadius = game.settings.get("torch", "brightRadius");
 			let tbutton = $(
 				`<div class="control-icon torch"><i class="fas fa-fire"></i></div>`);
 			let allowEvent = true;
@@ -222,27 +184,28 @@ class Torch {
 			let newTorch = tokenDoc.getFlag("torch", "newValue");
 
 			// Clear torch flags if light has been changed somehow.
+			let expectedTorch = hudData.brightLight + '/' + hudData.dimLight;
 			if (newTorch !== undefined && newTorch !== null && 
-					newTorch !== 'Dancing Lights' && 
-			    	(newTorch !== hudData.brightLight + '/' + hudData.dimLight)) {
+					newTorch !== 'Dancing Lights' && newTorch !== expectedTorch) {
 				await tokenDoc.setFlag("torch", "oldValue", null);
 				await tokenDoc.setFlag("torch", "newValue", null);
 				oldTorch = null;
 				newTorch = null;
+				ui.notifications.warn(`Torch: Resetting out-of-sync torch - current light: ${expectedTorch}, light in flag: ${newTorch}`);
 			}
 
 			if (newTorch !== undefined && newTorch !== null) {
 				// If newTorch is still set, light hasn't changed.
 				tbutton.addClass("active");
 			}
+
 			/*
 			 * If you don't have a torch, *or* you're already emitting more light 
 			 * than a torch, disallow the torch button and stack a slash over the flame
 			 */
-			else if (lightSource === '' || 
-					  (lightSource !== 'Dancing Lights' && 
-					    hudData.brightLight >= torchBrightRadius && 
-					    hudData.dimLight >= torchDimRadius )) {
+			else if (lightSource !== 'Dancing Lights' && 
+					    hudData.brightLight > torchBrightRadius && 
+					    hudData.dimLight > torchDimRadius ) {
 				let disabledIcon = $(
 					`<i class="fas fa-slash" style="position: absolute; color: tomato"></i>`);
 				tbutton.addClass("fa-stack");
@@ -258,13 +221,16 @@ class Torch {
 					ev.preventDefault();
 					ev.stopPropagation();
 					Torch.clickedTorchButton(
-						buttonElement, ev.ctrlKey, tokenId, 
+						buttonElement, ev.altKey, tokenId, 
 						tokenDoc, hudData, lightSource);
 				});
 			}
 		}
 	}
 
+	/*
+	 * Called when the torch button is clicked
+	 */
 	static async clickedTorchButton(
 			button, forceOff, tokenId, tokenDoc, hudData, lightSource) {
 		let torchOnDimRadius = game.settings.get("torch", "dimRadius");
@@ -272,58 +238,76 @@ class Torch {
 		let torchOffDimRadius = game.settings.get("torch", "offDimRadius");
 		let torchOffBrightRadius = game.settings.get("torch", "offBrightRadius");
 		let oldTorch = tokenDoc.getFlag("torch", "oldValue");
-		let newTorch = tokenDoc.getFlag("torch", "newValue");
 
 		if (forceOff) {	// Forcing light off...
-			hudData.brightLight = torchOffBrightRadius;
-			hudData.dimLight = torchOffDimRadius;
 			await tokenDoc.setFlag("torch", "oldValue", null);
 			await tokenDoc.setFlag("torch", "newValue", null);
 			await Torch.sendRequest(tokenId, {"requestType": "removeDancingLights"});
 			button.removeClass("active");
+			await tokenDoc.update(
+				{ brightLight: torchOffBrightRadius, dimLight: torchOffDimRadius });
+
 		} else if (oldTorch === null || oldTorch === undefined) {	// Turning light on...
-			await tokenDoc.setFlag(
-				"torch", "oldValue", hudData.brightLight + '/' + hudData.dimLight);
+			if (hudData.brightLight === torchOnBrightRadius && hudData.dimLight === torchOnDimRadius) {
+				await tokenDoc.setFlag(
+					"torch", "oldValue", torchOffBrightRadius + '/' + torchOnDimRadius);
+				ui.notifications.warn(`Torch: Turning on torch already turned on?`);
+			} else {
+				await tokenDoc.setFlag(
+					"torch", "oldValue", hudData.brightLight + '/' + hudData.dimLight);	
+			}
 			if (lightSource === 'Dancing Lights') {
 				await Torch.createDancingLights(tokenId);
 				await tokenDoc.setFlag("torch", "newValue", 'Dancing Lights');
 			} else {
-				if (torchOnBrightRadius > hudData.brightLight)
-					hudData.brightLight = torchOnBrightRadius;
-				if (torchOnDimRadius > hudData.dimLight)
-					hudData.dimLight = torchOnDimRadius;
+				let newBrightLight = Math.max(torchOnBrightRadius, hudData.brightLight);
+				let newDimLight = Math.max(torchOnDimRadius, hudData.dimLight);
 				await tokenDoc.setFlag(
-					"torch", "newValue", hudData.brightLight + '/' + hudData.dimLight);
+					"torch", "newValue", newBrightLight + '/' + newDimLight);
+				await tokenDoc.update({ 
+					brightLight: newBrightLight, dimLight: newDimLight 
+				});		
 			}
+			// Any token light data update must happen before we call consumeTorch(), 
+			// because the quantity change in consumeTorch() triggers the HUD to re-render,
+			// which triggers addTorchButton again. addTorchButton won't work right unless
+			// the change in light from the click is already a "done deal". 
 			button.addClass("active");
-			// The token light data update must happen before we call useTorch().
-			// Updating the quantity on the token's embedded torch item in 
-			// consumeTorch() triggers a HUD refresh. If the token light data isn't 
-			// updated before that happens, the fresh HUD won't reflect 
-			// the torch state we just changed.
-			await tokenDoc.update(
-				{brightLight: hudData.brightLight, dimLight: hudData.dimLight});
 			await Torch.consumeTorch(hudData.actorId);
+
 		} else { // Turning light off...
+			let oldTorch = tokenDoc.getFlag("torch", "oldValue");
+			let newTorch = tokenDoc.getFlag("torch", "newValue");
 			if (newTorch === 'Dancing Lights') {
 				await Torch.sendRequest(tokenId, {"requestType": "removeDancingLights"});
 			} else {
 				let thereBeLight = oldTorch.split('/');
-				hudData.brightLight = parseFloat(thereBeLight[0]);
-				hudData.dimLight = parseFloat(thereBeLight[1]);
+				if (oldTorch === newTorch) { // Something got lost - avoiding getting stuck
+					await tokenDoc.update({ 
+						brightLight: torchOffBrightRadius, 
+						dimLight: torchOffDimRadius 
+					});
+					ui.notifications.warn(`Torch: Turning off torch to turned on value?`);
+				} else {
+					await tokenDoc.update({
+						brightLight: parseFloat(thereBeLight[0]),
+						dimLight: parseFloat(thereBeLight[1])
+					});
+				}
 			}
 			await tokenDoc.setFlag("torch", "newValue", null);
 			await tokenDoc.setFlag("torch", "oldValue", null);
 			button.removeClass("active");
-			await tokenDoc.update(
-				{brightLight: hudData.brightLight, dimLight: hudData.dimLight});
 		}
 	}
 
+	/* 
+	 * Called from socket request and also directly when used by GM                                                                                                                                                                                                                                        
+	 */
 	static async handleSocketRequest(req) {
 		if (req.addressTo === undefined || req.addressTo === game.user._id) {
-			let scn = game.scenes.get(req.sceneId);
-			let reqToken = scn.data.tokens.find((token) => {
+			let scene = game.scenes.get(req.sceneId);
+			let reqToken = scene.data.tokens.find((token) => {
 				return token.id ? (token.id === req.tokenId) : (token._id === req.tokenId);
 			});
 			let actorId = reqToken.actor ? reqToken.actor.id : reqToken.actorId;
@@ -331,23 +315,23 @@ class Torch {
 
 			switch(req.requestType) {
 				case 'removeDancingLights':
-					scn.data.tokens.forEach(token => {
-						if (actorId === (token.actor ? token.actor.id : token.actorId) &&
-						    token.name === 'Dancing Light' &&
-						    10 === (token.data ? token.data.dimLight : token.dimLight) &&
-						    0 === (token.data ? token.data.brightLight : token.brightLight)) {
-							//let dltok = canvas.tokens.get(tok._id);
-							if (scn.getEmbeddedDocument) { // 0.8 or higher
-								dltoks.push(scn.getEmbeddedDocument("Token", token.id).id);
+					scene.data.tokens.forEach(token => {
+						let tokenData = token.data ?  token.data : token;
+						let tokenActorId = (token.actor ? token.actor.id : token.actorId);
+						// If the token is a dancing light owned by this actor
+						if (actorId === tokenActorId  && token.name === 'Dancing Light' &&
+						    	10 === tokenData.dimLight && 0 === tokenData.brightLight) {
+							if (scene.getEmbeddedDocument) { // 0.8 or higher
+								dltoks.push(scene.getEmbeddedDocument("Token", token.id).id);
 							} else { // 0.7 or lower
-								dltoks.push(scn.getEmbeddedEntity("Token", token._id)._id);
+								dltoks.push(scene.getEmbeddedEntity("Token", token._id)._id);
 							}
 						}
 					});
-					if (scn.deleteEmbeddedDocuments) { // 0.8 or higher
-						await scn.deleteEmbeddedDocuments("Token", dltoks);
+					if (scene.deleteEmbeddedDocuments) { // 0.8 or higher
+						await scene.deleteEmbeddedDocuments("Token", dltoks);
 					} else { // 0.7 or lower
-						await scn.deleteEmbeddedEntity("Token", dltoks);
+						await scene.deleteEmbeddedEntity("Token", dltoks);
 					}
 					break;
 			}
@@ -371,6 +355,7 @@ Hooks.on('ready', () => {
 		Torch.handleSocketRequest(request);
 	});
 });
+
 Hooks.once("init", () => {
 	game.settings.register("torch", "playerTorches", {
 		name: game.i18n.localize("torch.playerTorches.name"),
