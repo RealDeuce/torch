@@ -115,8 +115,7 @@ class Torch {
 				let quantity = torchItem.data.data 
 					? torchItem.data.data.quantity 
 					: item.data.quantity;
-				if (quantity > 0) 
-					return itemName;
+				return quantity > 0 ? itemName : '0';
 			}
 			// GM can always deliver light by fiat without an item
 			return game.user.isGM ? 'GM' : '';
@@ -165,47 +164,46 @@ class Torch {
 
 		let tokenId = tokenHUD.object.id;
 		let tokenDoc = tokenHUD.object.document ? tokenHUD.object.document : tokenHUD.object;
+		let tokenData = tokenDoc.data;
 		let itemName = game.settings.get("torch", "gmInventoryItemName");
 		let torchDimRadius = game.settings.get("torch", "dimRadius");
 		let torchBrightRadius = game.settings.get("torch", "brightRadius");
 
 		// Don't let the tokens we create for Dancing Lights have or use torches. :D
-		if (hudData.name === 'Dancing Light' && 
-		    hudData.dimLight === 10 && hudData.brightLight === 0) {
+		if (tokenData.name === 'Dancing Light' && 
+		    tokenData.dimLight === 10 && tokenData.brightLight === 0) {
 			return;
 		}
 
-		let lightSource = Torch.getLightSourceType(hudData.actorId, itemName);
+		let lightSource = Torch.getLightSourceType(tokenData.actorId, itemName);
 		if (lightSource !== '') {
 			let tbutton = $(
 				`<div class="control-icon torch"><i class="fas fa-fire"></i></div>`);
 			let allowEvent = true;
 			let oldTorch = tokenDoc.getFlag("torch", "oldValue");
 			let newTorch = tokenDoc.getFlag("torch", "newValue");
+			let tokenTooBright = lightSource !== 'Dancing Lights' 
+				&& tokenData.brightLight > torchBrightRadius 
+				&& tokenData.dimLight > torchDimRadius;
 
 			// Clear torch flags if light has been changed somehow.
-			let expectedTorch = hudData.brightLight + '/' + hudData.dimLight;
+			let expectedTorch = tokenData.brightLight + '/' + tokenData.dimLight;
 			if (newTorch !== undefined && newTorch !== null && 
 					newTorch !== 'Dancing Lights' && newTorch !== expectedTorch) {
 				await tokenDoc.setFlag("torch", "oldValue", null);
 				await tokenDoc.setFlag("torch", "newValue", null);
 				oldTorch = null;
 				newTorch = null;
-				ui.notifications.warn(`Torch: Resetting out-of-sync torch - current light: ${expectedTorch}, light in flag: ${newTorch}`);
+				ui.notifications.warn(
+					`Torch: Resetting out-of-sync torch - current light: ${expectedTorch}, light in flag: ${newTorch}`);
 			}
 
 			if (newTorch !== undefined && newTorch !== null) {
 				// If newTorch is still set, light hasn't changed.
 				tbutton.addClass("active");
 			}
-
-			/*
-			 * If you don't have a torch, *or* you're already emitting more light 
-			 * than a torch, disallow the torch button and stack a slash over the flame
-			 */
-			else if (lightSource !== 'Dancing Lights' && 
-					    hudData.brightLight > torchBrightRadius && 
-					    hudData.dimLight > torchDimRadius ) {
+			else if (
+				  lightSource === '0' || tokenTooBright) {
 				let disabledIcon = $(
 					`<i class="fas fa-slash" style="position: absolute; color: tomato"></i>`);
 				tbutton.addClass("fa-stack");
@@ -221,8 +219,7 @@ class Torch {
 					ev.preventDefault();
 					ev.stopPropagation();
 					Torch.clickedTorchButton(
-						buttonElement, ev.altKey, tokenId, 
-						tokenDoc, hudData, lightSource);
+						buttonElement, ev.altKey, tokenId, tokenDoc, lightSource);
 				});
 			}
 		}
@@ -231,13 +228,13 @@ class Torch {
 	/*
 	 * Called when the torch button is clicked
 	 */
-	static async clickedTorchButton(
-			button, forceOff, tokenId, tokenDoc, hudData, lightSource) {
+	static async clickedTorchButton(button, forceOff, tokenId, tokenDoc, lightSource) {
 		let torchOnDimRadius = game.settings.get("torch", "dimRadius");
 		let torchOnBrightRadius = game.settings.get("torch", "brightRadius");
 		let torchOffDimRadius = game.settings.get("torch", "offDimRadius");
 		let torchOffBrightRadius = game.settings.get("torch", "offBrightRadius");
 		let oldTorch = tokenDoc.getFlag("torch", "oldValue");
+		let tokenData = tokenDoc.data;
 
 		if (forceOff) {	// Forcing light off...
 			await tokenDoc.setFlag("torch", "oldValue", null);
@@ -248,20 +245,20 @@ class Torch {
 				{ brightLight: torchOffBrightRadius, dimLight: torchOffDimRadius });
 
 		} else if (oldTorch === null || oldTorch === undefined) {	// Turning light on...
-			if (hudData.brightLight === torchOnBrightRadius && hudData.dimLight === torchOnDimRadius) {
+			if (tokenData.brightLight === torchOnBrightRadius && tokenData.dimLight === torchOnDimRadius) {
 				await tokenDoc.setFlag(
 					"torch", "oldValue", torchOffBrightRadius + '/' + torchOnDimRadius);
 				ui.notifications.warn(`Torch: Turning on torch already turned on?`);
 			} else {
 				await tokenDoc.setFlag(
-					"torch", "oldValue", hudData.brightLight + '/' + hudData.dimLight);	
+					"torch", "oldValue", tokenData.brightLight + '/' + tokenData.dimLight);	
 			}
 			if (lightSource === 'Dancing Lights') {
 				await Torch.createDancingLights(tokenId);
 				await tokenDoc.setFlag("torch", "newValue", 'Dancing Lights');
 			} else {
-				let newBrightLight = Math.max(torchOnBrightRadius, hudData.brightLight);
-				let newDimLight = Math.max(torchOnDimRadius, hudData.dimLight);
+				let newBrightLight = Math.max(torchOnBrightRadius, tokenData.brightLight);
+				let newDimLight = Math.max(torchOnDimRadius, tokenData.dimLight);
 				await tokenDoc.setFlag(
 					"torch", "newValue", newBrightLight + '/' + newDimLight);
 				await tokenDoc.update({ 
@@ -273,7 +270,7 @@ class Torch {
 			// which triggers addTorchButton again. addTorchButton won't work right unless
 			// the change in light from the click is already a "done deal". 
 			button.addClass("active");
-			await Torch.consumeTorch(hudData.actorId);
+			await Torch.consumeTorch(tokenData.actorId);
 
 		} else { // Turning light off...
 			let oldTorch = tokenDoc.getFlag("torch", "oldValue");
@@ -298,6 +295,9 @@ class Torch {
 			await tokenDoc.setFlag("torch", "newValue", null);
 			await tokenDoc.setFlag("torch", "oldValue", null);
 			button.removeClass("active");
+			if (lightSource === "0" ){ 
+				await canvas.tokens.hud.render(); 
+			}
 		}
 	}
 
