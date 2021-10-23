@@ -4,13 +4,15 @@ This module provides a HUD toggle button for turning on and off a configurable r
 
 Additionally, in D&D5e only:
 *  The single HUD control will trigger the 'Dancing Lights' cantrip if you have it.
-*  Failing that, it will perforrm the 'Light' cantrip if you have that.
+*  Failing that, it will perform the 'Light' cantrip if you have that.
 *  Failing that, if you have torches, it consumes one, decrementing the quantity on each use.
-*  The button will show as disabled when you turn on the HUD if you have no torches left. (It doesn't currently disable the button while the HUD remains open, though, after you have extinguished your last remaining torch. Room for improvement.)
+*  The button will show as disabled when you turn on the HUD if you have no torches left. 
 ## Changelog
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
-
+* 1.4.0 - October 23, 2021 - 
+  - (C-S-McFarland) Fix for bug when you have torch and light spell.
+  - (Lupestro) Major restructuring with cleanup of race conditions.
 * 1.3.2 - June 29, 2021 - (Lupestro, zarmstrong, lozalojo) Spanish updates and URL in module.json
 * 1.3.1 - June 29, 2021 - (Lupestro) Updated zh-tw translation from zeteticl and pt-br translation from rinnocenti to 100% of strings. Thanks y'all!
 * 1.3.0 - June 25, 2021 - (Lupestro) Incorporated pending Taiwan Chinese and Brazilian Portuguese translations from zeteticl and rinnocenti.
