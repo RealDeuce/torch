@@ -165,7 +165,7 @@ class Torch {
 		let tokenId = tokenHUD.object.id;
 		let tokenDoc = tokenHUD.object.document ? tokenHUD.object.document : tokenHUD.object;
 		let tokenData = tokenDoc.data;
-		let itemName = game.settings.get("torch", "gmInventoryItemName");
+		let itemName = game.system.id === 'dnd5e' ? game.settings.get("torch", "gmInventoryItemName") : "";
 		let torchDimRadius = game.settings.get("torch", "dimRadius");
 		let torchBrightRadius = game.settings.get("torch", "brightRadius");
 
