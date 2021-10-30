@@ -1,4 +1,3 @@
-import { hookTests } from "./test/quench-hook.js";
 /*
  * ----------------------------------------------------------------------------
  * "THE BEER-WARE LICENSE" (Revision 42):
@@ -369,9 +368,21 @@ Hooks.on('ready', () => {
 	});
 });
 
-hookTests();
-
 Hooks.once("init", () => {
+	// Only load and initialize test suite if we're in a test environment
+	if (game.world.data.name.startsWith("torch-test-")) {
+		console.log("Torch | --- In test environment - load test code...")
+		import('./test/test-hook.js')
+		.then(obj => {
+			try {
+				obj.hookTests();
+				console.log("Torch | --- Tests ready");
+			}  catch (err) {
+				console.log("Torch | --- Error registering test code", err);
+			}
+		})
+		.catch(err => { console.log("Torch | --- No test code found", err); });
+	}
 
 	game.settings.register("torch", "playerTorches", {
 		name: game.i18n.localize("torch.playerTorches.name"),

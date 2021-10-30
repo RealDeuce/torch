@@ -1,7 +1,7 @@
 import { torchButtonToggles, torchButtonAbsent, cleanup } from './test-cases.js';
 
 const CLICK_DELAY = 10; /* ms */
-export let torchSimpleBasicTests = (context) => {
+export let torchGenericBasicTests = (context) => {
     const {describe, it, assert, afterEach} = context;
     const ACTOR = "Solo";
     describe('Torch Simple Basic Tests', () => {
