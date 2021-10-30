@@ -8,6 +8,13 @@ import { hookTests } from "./test/quench-hook.js";
  * ----------------------------------------------------------------------------
  */
 
+let DEBUG = false;
+
+let debugLog = (...args) => {
+	if (DEBUG) {
+		console.log (...args);
+	}
+}
 class Torch {
 
 	static async createDancingLights(tokenId) {
@@ -219,7 +226,7 @@ class Torch {
 					let buttonElement = $(ev.currentTarget.parentElement);
 					ev.preventDefault();
 					ev.stopPropagation();
-					Torch.clickedTorchButton(
+					await Torch.clickedTorchButton(
 						buttonElement, ev.altKey, tokenId, tokenDoc, lightSource);
 				});
 			}
@@ -230,6 +237,7 @@ class Torch {
 	 * Called when the torch button is clicked
 	 */
 	static async clickedTorchButton(button, forceOff, tokenId, tokenDoc, lightSource) {
+		debugLog("Torch clicked");
 		let torchOnDimRadius = game.settings.get("torch", "dimRadius");
 		let torchOnBrightRadius = game.settings.get("torch", "brightRadius");
 		let torchOffDimRadius = game.settings.get("torch", "offDimRadius");
@@ -244,6 +252,7 @@ class Torch {
 			button.removeClass("active");
 			await tokenDoc.update(
 				{ brightLight: torchOffBrightRadius, dimLight: torchOffDimRadius });
+				debugLog("Force torch off");
 
 		} else if (oldTorch === null || oldTorch === undefined) {	// Turning light on...
 			if (tokenData.brightLight === torchOnBrightRadius && tokenData.dimLight === torchOnDimRadius) {
@@ -257,6 +266,7 @@ class Torch {
 			if (lightSource === 'Dancing Lights') {
 				await Torch.createDancingLights(tokenId);
 				await tokenDoc.setFlag("torch", "newValue", 'Dancing Lights');
+				debugLog("Torch dance on");
 			} else {
 				let newBrightLight = Math.max(torchOnBrightRadius, tokenData.brightLight);
 				let newDimLight = Math.max(torchOnDimRadius, tokenData.dimLight);
@@ -264,7 +274,8 @@ class Torch {
 					"torch", "newValue", newBrightLight + '/' + newDimLight);
 				await tokenDoc.update({ 
 					brightLight: newBrightLight, dimLight: newDimLight 
-				});		
+				});
+				debugLog("Torch on");
 			}
 			// Any token light data update must happen before we call consumeTorch(), 
 			// because the quantity change in consumeTorch() triggers the HUD to re-render,
@@ -278,6 +289,7 @@ class Torch {
 			let newTorch = tokenDoc.getFlag("torch", "newValue");
 			if (newTorch === 'Dancing Lights') {
 				await Torch.sendRequest(tokenId, {"requestType": "removeDancingLights"});
+				debugLog("Torch dance off");
 			} else {
 				let thereBeLight = oldTorch.split('/');
 				if (oldTorch === newTorch) { // Something got lost - avoiding getting stuck
@@ -285,13 +297,13 @@ class Torch {
 						brightLight: torchOffBrightRadius, 
 						dimLight: torchOffDimRadius 
 					});
-					ui.notifications.warn(`Torch: Turning off torch to turned on value?`);
 				} else {
 					await tokenDoc.update({
 						brightLight: parseFloat(thereBeLight[0]),
 						dimLight: parseFloat(thereBeLight[1])
 					});
 				}
+				debugLog("Torch off");
 			}
 			await tokenDoc.setFlag("torch", "newValue", null);
 			await tokenDoc.setFlag("torch", "oldValue", null);
@@ -429,4 +441,4 @@ Hooks.once("init", () => {
 	});
 });
 
-console.log("Torch | --- Flame on!");
+console.log("Torch | --- Module loaded");
