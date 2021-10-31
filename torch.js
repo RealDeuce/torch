@@ -152,7 +152,7 @@ class Torch {
 					return item.name.toLowerCase() === itemName.toLowerCase();
 				});
 				let quantity = torchItem.data.data 
-					? torchItem.data.data.quantity : item.data.quantity;
+					? torchItem.data.data.quantity : torchItem.data.quantity;
 				return quantity > 0 ? itemName : '0';
 			}
 			// GM can always deliver light by fiat without an item
