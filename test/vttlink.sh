@@ -14,10 +14,15 @@ do
   rm $targetdir/$(basename $file)
   ln -s $file $targetdir/$(basename $file)
 done
+if [ ! -d $targetdir/test ]; then
+  mkdir $targetdir/test
+fi
 # Replace javascript in test directory with link
 for file in $clonedir/test/*.js
 do
   echo test/$(basename $file)
-  rm $targetdir/test/$(basename $file)
+  if [ -f "$targetdir/test/$(basename $file)" ]; then
+    rm $targetdir/test/$(basename $file)
+  fi
   ln -s $file $targetdir/test/$(basename $file)
 done

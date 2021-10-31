@@ -40,7 +40,7 @@ For each version of Foundry you'll be testing with, set it up for testing:
 3. Install the systems, then the modules, and then the test worlds. 
     * For Torch:
       * Systems: `DnD5e` and `Simple Worldbuilding System`
-      * Modules: `Translation: Spanish \[Core]` and the module under test
+      * Modules: `Translation: Spanish \[Core]`, `Quench`, and the module under test
       * Worlds: `torch-test-simple` and `torch-test-dnd5e`:
         * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-simple/world.json
         * https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/test/torch-test-5e/world.json

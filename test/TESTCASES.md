@@ -61,7 +61,7 @@
 
 ### Token with No Torches, No Cantrips
 
-*  Player aattempts to activate torch on Token
+*  Player attempts to activate torch on Token
 	* When:
 		- [ ] Light Radius settings are default (20 units/ 40 units, 0 units/0 units)
 		- [ ] Player Torches setting are checked
@@ -69,15 +69,12 @@
 		- [ ] Token HUD is open in scene
 		- [ ] Torch button is not activated
     * Expect:
-        - [ ] Torch button icon shows disabled status - orange slash through it
-	* Do: Player clicks torch button on token HUD
-	* Expect:
-        - [ ] Nothing happens
+        - [ ] Torch button does not appear
 
-*  GM aattempts to activate torch on Token
+*  GM attempts to activate torch on Token
 	* When:
 		- [ ] Light Radius settings are default (20 units/ 40 units, 0 units/0 units)
-		- [ ] Player Torches setting are checked
+		- [ ] Player Torches setting is checked
 		- [ ] GM Uses Inventory is checked
 		- [ ] Joined as GM
 		- [ ] Token HUD is open in scene

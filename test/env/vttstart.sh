@@ -6,6 +6,7 @@ fi
 case ${1:-8} in
   7) vttver="foundryvtt-0.7.10";;
   8) vttver="foundryvtt-0.8.8";;
+  9) vttver="foundryvtt-0.9.226";;
 esac
 if [ -z ${vttver} ]; then
   echo "Invalid Foundry major version specified"

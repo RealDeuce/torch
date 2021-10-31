@@ -12,12 +12,12 @@ export let torchGenericBasicTests = (context) => {
             describe('Tests Run As Gamemaster', () => {
                 it('gamemaster controls the token light levels when playerTorches is false', 
                 async () => {
-                    await game.settings.set('torch','playerTorches', true);
+                    await game.settings.set('torch', 'playerTorches', false);
                     await torchButtonToggles(assert, game, ACTOR, 20, 40);
                 });
                 it('gamemaster controls the token light levels when playerTorches is true', 
                 async () => {
-                    await game.settings.set('torch','playerTorches', true);
+                    await game.settings.set('torch', 'playerTorches', true);
                     await torchButtonToggles(assert, game, ACTOR, 20, 40);
                 });
             });

@@ -4,6 +4,7 @@ rem Set up structure for keeping data paths
 if not exist %~dp0Data mkdir %~dp0Data
 rem Determine Foundry subtree to use for this major version
 IF "%1"=="" ( SET "VTTNUM=8" ) ELSE ( SET "VTTNUM=%1" )
+if "%VTTNUM%"=="9" SET VTTVER=foundryvtt-0.9.226
 if "%VTTNUM%"=="8" SET VTTVER=foundryvtt-0.8.8
 if "%VTTNUM%"=="7" SET VTTVER=foundryvtt-0.7.10
 if "%VTTVER%"=="" ECHO "Invalid Foundry major version specified" && EXIT /B -1
