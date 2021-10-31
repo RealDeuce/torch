@@ -10,6 +10,10 @@ Additionally, in D&D5e only:
 ## Changelog
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
+* 1.4.2 - October 31, 2021 - (Lupestro)
+  - [Feature] Now works in Foundry 9, but still works in Foundry 7 and 8.
+  - [Bugfix] Function in Foundry 7 is restored - it had broken in restructuring.
+  - [Internal] Established test foundation - explicit cases, worlds, automation, fluid dev->test. 
 * 1.4.1 - October 23, 2021 - (Lupestro) Fixed bug in restructuring that broke features for non-DnD5e.
 * 1.4.0 - October 23, 2021 - 
   - (C-S-McFarland) Fix for bug when you have torch and light spell.
