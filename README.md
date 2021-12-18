@@ -10,6 +10,7 @@ Additionally, in D&D5e only:
 ## Changelog
 
 This has needed to be pieced together a bit, but here's what I've gleaned from the GIT history.
+* 1.4.3 - December 17, 2021 - Bumped official compatibility to Foundry 9, after testing with final test version. No code change.
 * 1.4.2 - October 31, 2021 - (Lupestro)
   - [Feature] Now works in Foundry 9, but still works in Foundry 7 and 8.
   - [Bugfix] Function in Foundry 7 is restored - it had broken in restructuring.
