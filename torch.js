@@ -30,6 +30,21 @@ const CTRL_REF_HTML = (turnOffLights, ctrlOnClick) => {
 </ol>
 `
 }
+const NEEDED_PERMISSIONS = {
+	// Don't want to do yourself something you can't undo without a GM - so check for delete on create
+	'createDancingLights': ['TOKEN_CREATE','TOKEN_DELETE'], 
+	'removeDancingLights': ['TOKEN_DELETE']
+}
+
+let hasPermissionsFor = (user, requestType)  => {
+	if (requestType in NEEDED_PERMISSIONS) {
+		return NEEDED_PERMISSIONS[requestType].every( permission => {
+			return user.can(permission);
+		})	
+	} else {
+		return true;
+	}
+}
 
 // Breaking out light data into its own object is a FoundryVTT 9 feature change
 let getLightRadii = (tokenData) => {
@@ -89,7 +104,7 @@ class Torch {
 		req.sceneId = canvas.scene.id ? canvas.scene.id : canvas.scene._id;
 		req.tokenId = tokenId;
 
-		if (game.user.isGM) {
+		if (hasPermissionsFor(game.user, req.requestType)) {
 			Torch.handleSocketRequest(req);
 		} else {
 			let recipient;
@@ -307,7 +322,8 @@ class Torch {
 					currentRadius.bright + '/' + currentRadius.dim);	
 			}
 			if (lightSource === 'Dancing Lights') {
-				await Torch.createDancingLights(tokenId);
+				await Torch.sendRequest(
+					tokenId, {"requestType": "createDancingLights"});
 				await tokenDoc.setFlag("torch", "newValue", 'Dancing Lights');
 				debugLog("Torch dance on");
 			} else {
@@ -366,7 +382,7 @@ class Torch {
 	 * Called from socket request and also directly when used by GM                                                                                                                                                                                                                                        
 	 */
 	static async handleSocketRequest(req) {
-		if (req.addressTo === undefined || req.addressTo === game.user._id) {
+		if (req.addressTo === undefined || req.addressTo === game.user.id) {
 			let scene = game.scenes.get(req.sceneId);
 			let reqToken = scene.data.tokens.find((token) => {
 				return token.id 
@@ -403,6 +419,8 @@ class Torch {
 						await scene.deleteEmbeddedEntity("Token", dltoks);
 					}
 					break;
+				case 'createDancingLights':
+					await Torch.createDancingLights(reqToken.id);
 			}
 		}
 	}
