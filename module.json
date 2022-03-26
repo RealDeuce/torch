@@ -3,7 +3,7 @@
 	"title": "Torch",
 	"description": "Torch HUD Controls",
 	"version": "1.4.4",
-	"author": "Deuce",
+	"authors": [{ "name": "Deuce"},{ "name": "Lupestro"}],
 	"languages": [
 		{
 			"lang": "en",
@@ -43,6 +43,6 @@
 	"manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/module.json",
 	"download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/torch.zip",
 	"url": "https://github.com/League-of-Foundry-Developers/torch",
-	"minimumCoreVersion": "0.7.5",
-	"compatibleCoreVersion": "9"
+	"minimumCoreVersion": "10",
+	"compatibleCoreVersion": "10"
 }
