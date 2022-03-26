@@ -6,7 +6,13 @@ fi
 case ${1:-8} in
   7) vttver="foundryvtt-0.7.10";;
   8) vttver="foundryvtt-0.8.8";;
-  9) vttver="foundryvtt-0.9.226";;
+  9) vttver="foundryvtt-9.251";;
+  9L) vttver="foundryvtt-9.238";;
+  10) vttver="foundryvtt-10.260";;
+esac
+dataver=$vttver
+case ${1:-8} in
+  9L) dataver="FoundryVTT9";;
 esac
 if [ -z ${vttver} ]; then
   echo "Invalid Foundry major version specified"
@@ -17,7 +23,7 @@ if [ ! -e ${wkdir}/${vttver}/resources/app/main.js ]; then
   exit -2
 fi
 echo Starting Foundry in ${wkdir}/${vttver}...
-if [ ! -e "${wkdir}/Data/${vttver}" ]; then 
-  mkdir ${wkdir}/Data/${vttver}
+if [ ! -e "${wkdir}/Data/${dataver}" ]; then 
+  mkdir ${wkdir}/Data/${dataver}
 fi
-node ${wkdir}/${vttver}/resources/app/main.js --dataPath="${wkdir}/Data/${vttver}"
+node ${wkdir}/${vttver}/resources/app/main.js --dataPath="${wkdir}/Data/${dataver}"
