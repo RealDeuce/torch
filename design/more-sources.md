@@ -93,6 +93,7 @@ In a later round, the behavior of the flame toggle icon will be dependent upon t
 
 ## Development plan
 
+All initial development will take place on the v10-prep branch. The code base there is simpler because it gets rid of all the legacy of v7, v8, and v9 naming, (and yes, there were small changes at each major release) and the timing is about right for when this will be done. We will not do a v10 release that doesn't let people using v9 still pull the final v9 version and we will still perform any critical bug fixes against v9, but new features will become available with v10.
  ### Prefactoring - Code structure
 
   We're adding a fair amount of complexity here. The goal of this round is to restructure the existing code to prepare for growth without adding any new features.
