@@ -74,7 +74,12 @@ export default class TorchToken {
         );
       });
     } else if ("Self" in allSources) {
-      return [allSources["Self"]];
+      return [
+        Object.assign(
+          { image: "/icons/svg/light.svg", quantity: 1 },
+          allSources["Self"]
+        )
+      ];
     }
   }
 
