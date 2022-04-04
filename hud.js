@@ -1,14 +1,11 @@
 const BUTTON_HTML = `<div class="control-icon torch"><i class="fas fa-fire"></i></div>`;
-const DISABLED_ICON_HTML = `<i class="fas fa-slash" style="position: absolute; color: tomato"></i>`;
-const SOURCE_MENU = `<div class="control-icon light-source-menu" style="padding: 4px 2px"></div>`;
+const DISABLED_ICON_HTML = `<i class="fas fa-slash"></i>`;
+const SOURCE_MENU = `<div class="control-icon light-source-menu"></div>`;
 const SOURCE_MENU_ITEM = (img, tooltip) => {
-  return `<button type="button" class="light-source-menu-item" style="border: 1px solid var(--color-border-light-primary); padding:0" >
-	  <img src="${img}" title="${tooltip}" style="margin:0"/>
+  return `<button type="button" class="light-source-menu-item" >
+	  <img src="${img}" title="${tooltip}" />
 	</button>`;
 };
-//style="padding: 4px 2px"
-//style="border: 1px solid var(--color-border-light-primary); padding:0"
-//style="margin:0"
 
 export default class TokenHUD {
   /*
@@ -78,10 +75,10 @@ export default class TokenHUD {
     for (let source of sources) {
       let child = $(SOURCE_MENU_ITEM(source.image, source.name));
       if (source.name === currentSource) {
-        child.css("border-color", "tomato");
+        child.addClass("active");
       }
 	  if (token.sourceIsExhausted(source.name)) {
-		child.css("opacity", "0.3");
+		child.addClass("exhausted");
 	  }
       child.click(async (ev) => {
         let menu = $(ev.currentTarget.parentElement);

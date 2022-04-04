@@ -7,6 +7,11 @@ clonedir="$(dirname $(cd "$(dirname "$0")"; pwd -P))"
 targetdir=$(cd "$(dirname "$1"/data/modules/torch/torch.js)"; pwd -P)
 echo From repo in: $clonedir
 echo To module in: $targetdir
+# Replace module.json with link
+rm $targetdir/module.json
+ln -s $clonedir/module.json $targetdir/module.json
+rm $targetdir/torch.css
+ln -s $clonedir/torch.css $targetdir/torch.css
 # Replace javascript in root directory with link
 for file in $clonedir/*.js
 do 

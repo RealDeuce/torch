@@ -39,11 +39,13 @@ export default class TorchToken {
     let sourceData = itemName
       ? owned.find((item) => item.name.toLowerCase() === itemName.toLowerCase())
       : undefined;
-    return itemName && !!sourceData
-      ? sourceData.name
-      : "Default" in owned
-      ? "Default"
-      : undefined;
+	if (itemName &&!!sourceData) {
+		return sourceData.name;
+	}
+	if (owned.length > 0) {
+		return owned[0].name;
+	}
+	return;
   }
   async setCurrentLightSource(value) {
     await this.token.setFlag("torch", "lightSource", value);

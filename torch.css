@@ -1,0 +1,20 @@
+.control-icon.torch i.fa-slash {
+    position: absolute;
+    color: tomato;
+}
+.control-icon.torch + .light-source-menu {
+    padding: 4px 2px;
+}
+.light-source-menu-item {
+    border: 1px solid var(--color-border-light-primary); 
+    padding: 0;
+}
+.light-source-menu-item img {
+    margin: 0;
+}
+.light-source-menu-item.active {
+    border-color: tomato;
+}
+.light-source-menu-item.exhausted {
+    opacity: 0.3;
+}

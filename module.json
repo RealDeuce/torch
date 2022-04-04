@@ -38,7 +38,7 @@
 	],
 	"esmodules": ["./torch.js"],
 	"socket": true,
-	"styles": [],
+	"styles": ["./torch.css"],
 	"packs": [],
 	"manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/v10/module.json",
 	"download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/v10/torch.zip",
