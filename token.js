@@ -73,8 +73,8 @@ export default class TorchToken {
           allSources[item.name]
         );
       });
-    } else if ("Default" in allSources) {
-      return [allSources["Default"]];
+    } else if ("Self" in allSources) {
+      return [allSources["Self"]];
     }
   }
 

@@ -87,8 +87,8 @@ export default class SourceSpecs {
         }
         break;
       default:
-        sources["Default"] = {
-          name: "Default",
+        sources["Self"] = {
+          name: "Self",
           light: [
             { bright: Settings.litRadii.bright, dim: Settings.litRadii.dim },
           ],
