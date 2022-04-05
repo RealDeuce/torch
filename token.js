@@ -14,12 +14,15 @@ let getAngle = (shape) => {
   switch (shape) {
     case "cone":
       return 53.13;
+    case "beam":
+      return 3;
     case "sphere":
     default:
       return 360;
   }
 };
 
+// GURPS.recurselist(game.actors.get(this.token.actorId).system.equipment.carried,(item) => { console.log("Name: ", item.name, ", Count: ",item.count); });
 export default class TorchToken {
   STATE_ON = "on";
   STATE_DIM = "dim";
