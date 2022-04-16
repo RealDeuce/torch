@@ -12,6 +12,8 @@ rm $targetdir/module.json
 ln -s $clonedir/module.json $targetdir/module.json
 rm $targetdir/torch.css
 ln -s $clonedir/torch.css $targetdir/torch.css
+rm $targetdir/sources.json
+ln -s $clonedir/sources.json $targetdir/sources.json
 # Replace javascript in root directory with link
 for file in $clonedir/*.js
 do 
@@ -30,4 +32,12 @@ do
     rm $targetdir/test/$(basename $file)
   fi
   ln -s $file $targetdir/test/$(basename $file)
+done
+for file in $clonedir/lang/*.json
+do
+  echo test/$(basename $file)
+  if [ -f "$targetdir/lang/$(basename $file)" ]; then
+    rm $targetdir/lang/$(basename $file)
+  fi
+  ln -s $file $targetdir/lang/$(basename $file)
 done

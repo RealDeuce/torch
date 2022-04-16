@@ -20,7 +20,7 @@ export default class TokenHUD {
     changeLightSource
   ) {
     let state = token.lightSourceState;
-    let disabled = token.currentLightSourceIsExhausted;
+    let disabled = token.lightSourceIsExhausted(token.currentLightSource);
     let allowEvent = !disabled;
     let tbutton = $(BUTTON_HTML);
     if (state === token.STATE_ON) {
@@ -77,9 +77,9 @@ export default class TokenHUD {
       if (source.name === currentSource) {
         child.addClass("active");
       }
-	  if (token.sourceIsExhausted(source.name)) {
-		child.addClass("exhausted");
-	  }
+      if (token.lightSourceIsExhausted(source.name)) {
+        child.addClass("exhausted");
+      }
       child.click(async (ev) => {
         let menu = $(ev.currentTarget.parentElement);
         await changeLightSource(token, source.name);
@@ -94,7 +94,7 @@ export default class TokenHUD {
   static syncDisabledState(tbutton, token) {
     let oldSlash = tbutton.find(".fa-slash");
     let wasDisabled = oldSlash.length > 0;
-    let willBeDisabled = token.currentLightSourceIsExhausted;
+    let willBeDisabled = token.lightSourceIsExhausted(token.currentLightSource);
     if (!wasDisabled && willBeDisabled) {
       let disabledIcon = $(DISABLED_ICON_HTML);
       tbutton.addClass("fa-stack");

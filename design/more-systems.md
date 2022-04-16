@@ -143,3 +143,18 @@ This will allow nearly all of the extensibility needed by the module without add
 Users can request the addition of a system topology in an issue, perhaps with a macro to demonstrate finding all the equipment on their system, or (better yet) offer an implementation in a PR. All of the topologies and their discriminator will be supported together in the topology.js module, so they would just be adding to that.
 
 We can describe briefly in the `README.md` what users need to do to support such a system as well.
+
+# Testing
+
+For these changes, we will want to do more automated testing. For the new V10 work, we broke the work that used to be combined in a single module into several, each with a single purpose. This opens up an opportunity for testing their behavior individually. 
+
+* The `token` module can be tested independently of the HUD by setting flags, advancing through states, and measuring the token behavior. 
+* The `taxonomy` module can be tested independently by observing its effect on consuming resources in various systems.
+* The `library` module can be tested independently by providing it with JSON files and verifying it delivers the right overlays of data.
+* The `socket` and `request` modules can be tested by invoking them to perform actions via a GM.
+* Admittedly, the best way to test `settings` is to actually run the settings in Foundry and measure that the right things get set and retrieved.
+* The `torch` and `hud` modules, unfortunately, cannot be tested entirely independently, as they are too tied into everything.
+
+So we've got a lot we can test before we start trying to run the whole gamut of capabilities via the settings and the HUD.
+
+

@@ -7,14 +7,14 @@
     "torch.dimRadius.hint": "發出多少格單位的微光。",
     "torch.gmUsesInventory.name": "使用庫存",
     "torch.gmUsesInventory.hint": "當GM開關火炬時，將使用角色庫存。",
-    "torch.offBrightRadius.name": "關閉時發出亮光",
-    "torch.offBrightRadius.hint": "關閉時發出多少格單位的亮光。",
-    "torch.offDimRadius.name": "關閉時發出微光。",
-    "torch.offDimRadius.hint": "關閉時發出多少格單位的微光。",
-    "torch.turnOffAllLights": "強制亮/微光設置為OFF",
-    "torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 點擊",
     "torch.gmInventoryItemName.name": "使用庫存物品的名稱",
     "torch.gmInventoryItemName.hint": "如果啓用了\"GM使用庫存\"，則使用庫存物品的名稱。",
+    "torch.turnOffAllLights": "強制亮/微光設置為OFF",
+    "torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 點擊",
     "torch.dancingLightVision.name": "賦予舞動燈火視野。",
-    "torch.dancingLightVision.hint": "啓用後，每個舞動燈火都擁有視野，因此可用來顯示玩家實際上無法看到的地圖區域。"
+    "torch.dancingLightVision.hint": "啓用後，每個舞動燈火都擁有視野，因此可用來顯示玩家實際上無法看到的地圖區域。",
+	"torch.playerUsesInventory.name": "Player Uses Inventory",
+	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
+	"torch.gameLightSources.name": "Additional Light Sources",
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied"
 }

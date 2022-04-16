@@ -1,0 +1,290 @@
+{
+  "dnd5e": {
+    "system": "dnd5e",
+    "topology": "standard",
+    "quantity" : "quantity",
+    "sources": {
+      "Candle": {
+        "name": "Candle",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          { "bright": 5, "dim": 10, "angle": 360 }
+        ]
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          { "bright": 20, "dim": 40, "angle": 360 }
+        ]
+      },
+      "Lamp": {
+        "name": "Lamp",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          { "bright": 15, "dim": 45, "angle": 360 }
+        ]
+      },
+      "Bullseye Lantern": {
+        "name": "Bullseye Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          { "bright": 15, "dim": 45, "angle": 53 }
+        ]
+      },
+      "Hooded Lantern": {
+        "name": "Hooded Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 3,
+        "light": [
+          { "bright": 30, "dim": 60, "angle": 360 },
+          { "bright": 0, "dim": 5, "angle": 360 }
+        ]
+      },
+      "Light": {
+        "name": "Light",
+        "type": "cantrip",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          { "bright": 20, "dim": 40, "angle": 360 }
+        ]
+      },
+      "Dancing Lights": {
+        "name": "Dancing Lights",
+        "type": "cantrip",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          { "bright": 0, "dim": 10, "angle": 360 }
+        ]
+      }                
+    }
+  },
+  "swade": {
+    "system": "swade",
+    "topology": "standard",
+    "quantity" : "quantity",
+    "sources": {
+      "Candle": {
+        "name": "Candle",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 0, "dim": 2, "angle": 360}
+        ]
+      },
+      "Flashlight": {
+        "name": "Flashlight",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 10, "dim": 10, "angle": 3}
+        ]
+      },
+      "Lantern": {
+        "name": "Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 4, "dim": 4, "angle": 360}
+        ]
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 4, "dim": 4, "angle": 360}
+        ]
+      }    
+    }
+  },
+  "pf1": {
+    "system": "pf1",
+    "topology": "standard",
+    "quantity" : "quantity",
+    "sources": {
+      "Candle": {
+        "name": "Candle",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 0, "dim": 5, "angle": 360}
+        ]
+      },
+      "Lamp": {
+        "name": "Lamp",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 15, "dim": 30, "angle": 360}
+        ]
+      },
+      "Lantern": {
+        "name": "Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 30, "dim": 60, "angle": 360}
+        ]
+      },
+      "Bullseye Lantern": {
+        "name": "Bullseye Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 60, "dim": 120, "angle": 53}
+        ]
+      },
+      "Hooded Lantern": {
+        "name": "Hooded Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 30, "dim": 60, "angle": 360}
+        ]
+      },
+      "Miner's Lantern": {
+        "name": "Miner's Lantern",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 30, "dim": 60, "angle": 53}
+        ]
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 20, "dim": 40, "angle": 360}
+        ]
+      }
+    }
+  },
+  "pf2e": {
+    "system": "pf2e",
+    "topology": "standard",
+    "quantity" : "quantity",
+    "sources": {
+      "Candle": {
+        "name": "Candle",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 0, "dim": 10, "angle": 360}
+        ]
+      },
+      "Lantern (Hooded)": {
+        "name": "Lantern (Hooded)",
+        "type": "equipment",
+        "consumable": false,
+        "states": 3,
+        "light": [
+          {"bright": 30, "dim": 60, "angle": 360}, 
+          {"bright": 0, "dim": 5, "angle": 360}
+        ]
+      },
+      "Lantern (Bull's Eye)": {
+        "name": "Lantern (Bull's Eye)",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 60, "dim": 120, "angle": 53}
+        ]
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 20, "dim": 40, "angle": 360}
+        ]
+      }
+    }
+  },
+  "earthdawn4e": {
+    "system": "earthdawn4e",
+    "topology": "standard",
+    "quantity" : "amount",
+    "sources": {
+      "Candle": {
+        "name": "Candle",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 0, "dim": 3, "angle": 360}
+        ]
+      },
+      "Lantern (Hooded)": {
+        "name": "Lantern (Hooded)",
+        "type": "equipment",
+        "consumable": false,
+        "states": 3,
+        "light": [
+          {"bright": 10, "dim": 10, "angle": 360}, 
+          {"bright": 0, "dim": 10, "angle": 360}
+        ]
+      },
+      "Lantern (Bullseye)": {
+        "name": "Lantern (Bullseye)",
+        "type": "equipment",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 20, "dim": 20, "angle": 3}
+        ]
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": true,
+        "states": 2,
+        "light": [
+          {"bright": 10, "dim": 10, "angle": 360}
+        ]
+      }            
+    }
+  },
+  "default": {
+    "system": "default",
+    "topology": "standard",
+    "quantity" : "quantity",
+    "sources": {
+      "Self": {
+        "name": "Self",
+        "type": "none",
+        "consumable": false,
+        "states": 2,
+        "light": [
+          {"bright": 40, "dim":20, "angle": 360}
+        ]
+      }            
+    }
+  }
+}

@@ -2,6 +2,7 @@ import Settings from "./settings.js";
 import TorchSocket from "./socket.js";
 import TokenHUD from "./hud.js";
 import TorchToken from "./token.js";
+import SourceLibrary from "./library.js";
 
 /*
  * ----------------------------------------------------------------------------
@@ -24,10 +25,18 @@ class Torch {
    * Add a torch button to the Token HUD - called from TokenHUD render hook
    */
   static async addTorchButton(hud, hudHtml, hudData) {
-    let token = new TorchToken(hud.object.document);
+    let library = await SourceLibrary.load(
+      game.system.id,
+      Settings.lightRadii.bright, 
+      Settings.lightRadii.dim, 
+      Settings.inventoryItemName, 
+      Settings.gameLightSources, 
+    );
+    let token = new TorchToken(hud.object.document, library);
     let lightSources = token.ownedLightSources;
 
-    // Don't let the tokens we create for light sources have or use their own light sources recursively.
+    // Don't let the tokens we create for light sources have or use their own
+    // light sources recursively.
     if (hud.object.document.name in lightSources) return;
 	if (!game.user.isGM && !Settings.playerTorches) return;
 	if (!token.currentLightSource) return;

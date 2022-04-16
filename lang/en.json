@@ -1,5 +1,6 @@
 {
-	"I18N.MAINTAINERS": ["Deuce"],
+	"I18N.LANGUAGE": "English",
+	"I18N.MAINTAINERS": ["Lupestro"],
 
 	"torch.playerTorches.name": "Player Torches",
 	"torch.playerTorches.hint": "Allow players to toggle their own torches.",
@@ -9,12 +10,13 @@
 	"torch.gmUsesInventory.hint": "If set, when the GM toggles a torch, it will use the actors inventory.",
 	"torch.gmInventoryItemName.name": "Inventory item name to use",
 	"torch.gmInventoryItemName.hint": "Name of the inventory item to use if \"GM Uses Inventory\" is set.",
-	"torch.offBrightRadius.name": "Emit bright when off",
-	"torch.offBrightRadius.hint": "How many grid units of bright light to emit when light is toggled off.",
-	"torch.offDimRadius.name": "Emit dim when off.",
-	"torch.offDimRadius.hint": "How many grid units of dim light to emit when light is toggled off.",
 	"torch.turnOffAllLights": "Force bright and dim to configured \"off\" values.",
 	"torch.holdCtrlOnClick": "Hold <span class=\"key\">Ctrl</span> on Click",
 	"torch.dancingLightVision.name": "Give Dancing Lights Vision.",
-	"torch.dancingLightVision.hint": "When enabled, each dancing light has vision so can be used to reveal areas of the map players can't actually see."
+	"torch.dancingLightVision.hint": "When enabled, each dancing light has vision so can be used to reveal areas of the map players can't actually see.",
+	"torch.playerUsesInventory.name": "Player Uses Inventory",
+	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
+	"torch.gameLightSources.name": "Additional Light Sources",
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied"
+
 }

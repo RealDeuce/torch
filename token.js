@@ -1,119 +1,95 @@
 import TorchSocket from "./socket.js";
 import Settings from "./settings.js";
-import SourceSpecs from "./source-specs.js";
 
 let DEBUG = true;
 
-let debugLog = (...args) => {
+const debugLog = (...args) => {
   if (DEBUG) {
     console.log(...args);
   }
 };
 
-let getAngle = (shape) => {
-  switch (shape) {
-    case "cone":
-      return 53.13;
-    case "beam":
-      return 3;
-    case "sphere":
-    default:
-      return 360;
+const getLightUpdates = function(lightSettings) {
+  let result = {}
+  for (let setting in lightSettings) {
+    result["light." + setting] = lightSettings[setting];
   }
-};
-
-// GURPS.recurselist(game.actors.get(this.token.actorId).system.equipment.carried,(item) => { console.log("Name: ", item.name, ", Count: ",item.count); });
+  return result;
+}
 export default class TorchToken {
   STATE_ON = "on";
   STATE_DIM = "dim";
   STATE_OFF = "off";
-  token;
+  _token;
+  _library;
+  _ownedSources;
 
-  constructor(token) {
-    this.token = token;
+  constructor(token, library) {
+    this._token = token;
+    this._library = library;
+    this._ownedSources = library.actorLightSources(this._token.actorId);
   }
-  // Flags
-  get currentLightSource() {
-    let lightSource = this.token.getFlag("torch", "lightSource");
-    let owned = this.ownedLightSources;
-    if (lightSource && owned.find((item) => item.name === lightSource))
-      return lightSource;
-    let itemName = Settings.inventoryItemName;
-    let sourceData = itemName
-      ? owned.find((item) => item.name.toLowerCase() === itemName.toLowerCase())
-      : undefined;
-	if (itemName &&!!sourceData) {
-		return sourceData.name;
-	}
-	if (owned.length > 0) {
-		return owned[0].name;
-	}
-	return;
+
+  get ownedLightSources() {
+    return this._ownedSources;
   }
-  async setCurrentLightSource(value) {
-    await this.token.setFlag("torch", "lightSource", value);
-  }
+
   get lightSourceState() {
-    let state = this.token.getFlag("torch", "lightSourceState");
+    let state = this._token.getFlag("torch", "lightSourceState");
     return typeof state === "undefined" ? this.STATE_OFF : state;
   }
-  get ownedLightSources() {
-    let allSources = SourceSpecs.lightSources;
-    let items = Array.from(game.actors.get(this.token.actorId).items).filter(
-      (item) => {
-        let itemSource = SourceSpecs.find(item.name, allSources);
-        if (item.type === "spell") {
-          return !!itemSource && itemSource.type === "cantrip";
-        } else {
-          return !!itemSource && itemSource.type === "equipment";
-        }
-      }
-    );
-    if (items.length > 0) {
-      return items.map((item) => {
-        return Object.assign(
-          { image: item.img, quantity: item.quantity },
-          allSources[item.name]
-        );
-      });
-    } else if ("Self" in allSources) {
-      return [
-        Object.assign(
-          { image: "/icons/svg/light.svg", quantity: 1 },
-          allSources["Self"]
-        )
-      ];
+
+  get currentLightSource() {
+    // The one we saved
+    let lightSource = this._token.getFlag("torch", "lightSource");
+    if (lightSource && this._ownedSources.find(
+        (item) => item.name === lightSource
+      )
+    ) {
+      return lightSource;
     }
+    // The one the GM asked for
+    let itemName = Settings.inventoryItemName;
+    let namedSource = itemName
+      ? this._ownedSources.find(
+          (item) => item.name.toLowerCase() === itemName.toLowerCase()
+        )
+      : undefined;
+	  if (itemName &&!!namedSource) {
+		  return namedSource.name;
+    }
+    // The top one on the list
+    if (this._ownedSources.length > 0) {
+      return this._ownedSources[0].name;
+    }
+    // Nothing
+    return;
   }
 
-  get currentLightSourceIsExhausted() {
-	  return this.sourceIsExhausted(this.currentLightSource);
+  async setCurrentLightSource(value) {
+    await this._token.setFlag("torch", "lightSource", value);
   }
 
-  sourceIsExhausted(source) {
-    let allSources = SourceSpecs.lightSources;
-    if (allSources[source].consumable) {
-      // Now we can consume it
-      let torchItem = Array.from(
-        game.actors.get(this.token.actorId).items
-      ).find((item) => item.name.toLowerCase() === source.toLowerCase());
-      return torchItem && torchItem.system.quantity === 0;
+  lightSourceIsExhausted(source) {
+    if (this._library.getLightSource(source).consumable) {
+      let inventory = this._library.getInventory(this._token.actorId, source);
+      return inventory === 0;
     }
     return false;
   }
 
   /* Orchestrate State Management */
+
   async forceStateOff() {
     // Need to deal with dancing lights
-    await this.token.setFlag("torch", "lightSourceState", this.STATE_OFF);
-    await this.turnOffSource();
+    await this._token.setFlag("torch", "lightSourceState", this.STATE_OFF);
+    await this._turnOffSource();
   }
 
   async advanceState() {
     let source = this.currentLightSource;
     let state = this.lightSourceState;
-    let allSources = SourceSpecs.lightSources;
-    if (allSources[source].states === 3) {
+    if (this._library.getLightSource(source).states === 3) {
       state =
         state === this.STATE_OFF
           ? this.STATE_ON
@@ -123,88 +99,65 @@ export default class TorchToken {
     } else {
       state = state === this.STATE_OFF ? this.STATE_ON : this.STATE_OFF;
     }
-    await this.token.setFlag("torch", "lightSourceState", state);
+    await this._token.setFlag("torch", "lightSourceState", state);
     switch (state) {
       case this.STATE_OFF:
-        await this.turnOffSource();
+        await this._turnOffSource();
         break;
       case this.STATE_ON:
-        await this.turnOnSource();
+        await this._turnOnSource();
         break;
       case this.STATE_DIM:
-        await this.dimSource();
+        await this._dimSource();
         break;
       default:
-        await this.turnOffSource();
+        await this._turnOffSource();
     }
     return state;
   }
-  async turnOffSource() {
+
+  // Private internal methods
+
+  async _turnOffSource() {
     if (TorchSocket.requestSupported("delete", this.currentLightSource)) {
       // separate token lighting
-      TorchSocket.sendRequest(this.token.id, "delete", this.currentLightSource);
+      TorchSocket.sendRequest(this._token.id, "delete", this.currentLightSource);
     } else {
-      // self lighting
-      let sourceData = SourceSpecs.lightSources[this.currentLightSource];
-      await this.token.update({
-        "light.bright": Settings.offRadii.bright,
-        "light.dim": Settings.offRadii.dim,
-        "light.angle": 360,
-      });
-      if (sourceData.consumable && sourceData.type === "equipment") {
-        this.consumeSource();
+      // self lighting - to turn off, use light settings from prototype token
+      let protoToken = game.actors.get(this._token.actorId).prototypeToken;
+      await this._token.update(getLightUpdates(protoToken.light));
+      let source = this._library.getLightSource(this.currentLightSource);
+      if (source.consumable) {
+        await this._consumeSource(source);
       }
     }
   }
-  async turnOnSource() {
+
+  async _turnOnSource() {
     if (TorchSocket.requestSupported("create", this.currentLightSource)) {
       // separate token lighting
-      TorchSocket.sendRequest(this.token.id, "create", this.currentLightSource);
+      TorchSocket.sendRequest(this._token.id, "create", this.currentLightSource);
     } else {
       // self lighting
-      let sourceData = SourceSpecs.lightSources[this.currentLightSource];
-      await this.token.update({
-        "light.bright": sourceData.light[0].bright,
-        "light.dim": sourceData.light[0].dim,
-        "light.angle": getAngle(sourceData.shape),
-      });
-      if (sourceData.consumable && sourceData.type === "spell") {
-        this.consumeSource();
-      }
+      let source = this._library.getLightSource(this.currentLightSource);
+      await this._token.update(getLightUpdates(source.light[0]));
     }
   }
 
-  async dimSource() {
-    let sourceData = SourceSpecs.lightSources[this.currentLightSource];
-    if (sourceData.states === 3) {
-      await this.token.update({
-        "light.bright": sourceData.light[1].bright,
-        "light.dim": sourceData.light[1].dim,
-        "light.angle": getAngle(sourceData.shape),
-      });
+  async _dimSource() {
+    let source = this._library.getLightSource(this.currentLightSource);
+    if (source.states === 3) {
+      await this._token.update(getLightUpdates(source.light[1]));
     }
   }
 
-  async consumeSource() {
-    let sourceData = SourceSpecs.lightSources[this.currentLightSource];
-    let torchItem = Array.from(game.actors.get(this.token.actorId).items).find(
-      (item) => item.name === sourceData.name
-    );
-    if (
-      torchItem &&
-      sourceData.consumable &&
-      (!game.user.isGM || Settings.gmUsesInventory)
-    ) {
-      if (sourceData.type === "spell" && torchItem.type === "spell") {
-        //TODO: Figure out how to consume spell levels - and whether we want to
-      } else if (
-        sourceData.type === "equipment" &&
-        torchItem.type !== "spell"
-      ) {
-        if (torchItem.system.quantity > 0) {
-          await torchItem.update({
-            "system.quantity": torchItem.system.quantity - 1,
-          });
+  async _consumeSource(source) {
+    if ((game.user.isGM && Settings.gmUsesInventory) || 
+       (!game.user.isGM && Settings.userUsesInventory)) {
+      let count = this._library.getInventory(this._token.actorId, source.name);
+      if (count ? count > 0 : false) {
+        if (!game.user.isGM || Settings.gmUsesInventory) {
+          await this._library.decrementInventory(this._token.actorId, source.name);
         }
       }
     }

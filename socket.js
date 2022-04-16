@@ -1,4 +1,4 @@
-import LightSource from "./sources.js";
+import TorchRequest from "./request.js";
 
 export default class TorchSocket {
   /*
@@ -8,8 +8,8 @@ export default class TorchSocket {
     if (req.addressTo === undefined || req.addressTo === game.user.id) {
       let scene = game.scenes.get(req.sceneId);
       let token = scene.tokens.get(req.tokenId);
-      if (LightSource.supports(req.requestType)) {
-        await LightSource.perform(req.requestType, scene, token);
+      if (TorchRequest.supports(req.requestType)) {
+        await TorchRequest.perform(req.requestType, scene, token);
       } else {
         console.warning(
           `Torch | --- Attempted unregistered socket action ${req.requestType}`
@@ -22,7 +22,7 @@ export default class TorchSocket {
    * See if this light source supports a socket request for this action
    */
   static requestSupported(action, lightSource) {
-    return LightSource.supports(`${action}:${lightSource}`);
+    return TorchRequest.supports(`${action}:${lightSource}`);
   }
 
   /*
@@ -36,14 +36,14 @@ export default class TorchSocket {
       tokenId: tokenId,
     };
 
-    if (LightSource.supports(req.requestType)) {
-      if (LightSource.isPermitted(game.user, req.requestType)) {
+    if (TorchRequest.supports(req.requestType)) {
+      if (TorchRequest.isPermitted(game.user, req.requestType)) {
         TorchSocket.handleSocketRequest(req);
         return true;
       } else {
         let recipient = game.users.contents.find((user) => {
           return (
-            user.active && LightSource.isPermitted(user, req.requestType)
+            user.active && TorchRequest.isPermitted(user, req.requestType)
           );
         });
         if (recipient) {

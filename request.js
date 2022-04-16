@@ -1,3 +1,6 @@
+// Note: requests.js operates statically purely at the Foundry level, so scene and 
+// token are Foundry objects. Token is *not* Torch's light source token object.
+
 const NEEDED_PERMISSIONS = {
   // Don't want to do yourself something you can't undo without a GM -
   // so check for delete on create
@@ -5,10 +8,10 @@ const NEEDED_PERMISSIONS = {
   "delete:Dancing Lights": ["TOKEN_DELETE"],
 };
 
-export default class LightSource {
+export default class TorchRequest {
 	static ACTIONS = {
-		"create:Dancing Lights": LightSource.createDancingLights,
-		"delete:Dancing Lights": LightSource.removeDancingLights,
+		"create:Dancing Lights": TorchRequest.createDancingLights,
+		"delete:Dancing Lights": TorchRequest.removeDancingLights,
 	};
 	static isPermitted(user, requestType) {
     if (requestType in NEEDED_PERMISSIONS) {
@@ -21,11 +24,11 @@ export default class LightSource {
   }
 
   static supports(requestType) {
-    return requestType in LightSource.ACTIONS;
+    return requestType in TorchRequest.ACTIONS;
   }
 
   static perform(requestType, scene, token) {
-    LightSource.ACTIONS[requestType](scene, token);
+    TorchRequest.ACTIONS[requestType](scene, token);
   }
 
   // Dancing lights
