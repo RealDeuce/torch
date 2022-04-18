@@ -16,14 +16,14 @@ export default class Settings {
     return game.settings.get("torch", "playerTorches");
   }
   static get gmUsesInventory() {
-    return game.system.id === "dnd5e"
-      ? game.settings.get("torch", "gmUsesInventory")
-      : false;
+    return game.settings.get("torch", "gmUsesInventory");
   }
+  static get userUsesInventory() {
+    return game.settings.get("torch", "playerUsesInventory");
+  }
+
   static get inventoryItemName() {
-    return game.system.id === "dnd5e"
-      ? game.settings.get("torch", "gmInventoryItemName")
-      : undefined;
+    return game.settings.get("torch", "gmInventoryItemName");
   }
   static get lightRadii() {
     return {
@@ -31,16 +31,14 @@ export default class Settings {
       dim: game.settings.get("torch", "dimRadius"),
     };
   }
-  static get dancingLightsVision() {
-    return game.settings.get("torch", "dancingLightVision");
-  }
-
-  static get userUsesInventory() {
-    return game.settings.get("torch", "playerUsesInventory");
-  }
-
   static get gameLightSources() {
     return game.settings.get("torch", "gameLightSources");
+  }
+
+  static get dancingLightsVision() {
+    return game.system.id === "dnd5e"
+     ? game.settings.get("torch", "dancingLightVision")
+     : false;
   }
 
   static get helpText() {

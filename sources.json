@@ -271,9 +271,133 @@
       }            
     }
   },
+  "gurps": {
+    "system": "gurps",
+    "topology": "gurps",
+    "quantity": "amount",
+    "sources": {
+      "Candle, Tallow": {
+        "name": "Candle, Tallow",
+        "type": "equipment",
+        "consumable": "true",
+        "states": 2,
+        "light": [
+          {"bright": 0, "dim": 2, "angle": 360, "color": "#ff9329", "alpha": 0.6 }
+        ]
+      },
+      "Flashlight, Heavy": {
+        "name": "Flashlight, Heavy",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 30, "dim": 30, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Mini Flashlight": {
+        "name": "Mini Flashlight",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 4, "dim": 5, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Micro Flashlight": {
+        "name": "Micro Flashlight",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 1, "dim": 1, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Survival Flashlight": {
+        "name": "Survival Flashlight",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 1, "dim": 1, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Lantern": {
+        "name": "Lantern",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 4, "dim": 5, "angle": 360, "color": "#ff9329", "alpha": 1 }
+        ]    
+      },
+      "Torch": {
+        "name": "Torch",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 9, "dim": 10, "angle": 360, "color": "#ff9329", "alpha": 1 }
+        ]    
+      },
+      "Bull's-Eye Lantern": {
+        "name": "Bull's-Eye Lantern",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 9, "dim": 10, "angle": 53, "color": "#ff9329", "alpha": 1 }
+        ]    
+      },
+      "Electric Lantern, Small": {
+        "name": "Electric Lantern, Small",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 3, "dim": 3, "angle": 360, "color": "#ff9329", "alpha": 1 }
+        ]    
+      },
+      "Electric Lantern, Large": {
+        "name": "Electric Lantern, Large",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 4, "dim": 5, "angle": 360, "color": "#ff9329", "alpha": 1 }
+        ]    
+      },
+      "Small Tactical Light": {
+        "name": "Small Tactical Light",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 22, "dim": 25, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Large Tactical Light": {
+        "name": "Large Tactical Light",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 95, "dim": 100, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      },
+      "Floodlight": {
+        "name": "Floodlight",
+        "type": "equipment",
+        "consumable": "false",
+        "states": 2,
+        "light": [
+          {"bright": 190, "dim": 200, "angle": 3, "color": "#ffd6aa", "alpha": 1 }
+        ]    
+      }
+    }
+  },
   "default": {
     "system": "default",
-    "topology": "standard",
+    "topology": "none",
     "quantity" : "quantity",
     "sources": {
       "Self": {

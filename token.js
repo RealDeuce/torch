@@ -155,10 +155,8 @@ export default class TorchToken {
     if ((game.user.isGM && Settings.gmUsesInventory) || 
        (!game.user.isGM && Settings.userUsesInventory)) {
       let count = this._library.getInventory(this._token.actorId, source.name);
-      if (count ? count > 0 : false) {
-        if (!game.user.isGM || Settings.gmUsesInventory) {
-          await this._library.decrementInventory(this._token.actorId, source.name);
-        }
+      if (count) {
+        await this._library.decrementInventory(this._token.actorId, source.name);
       }
     }
   }

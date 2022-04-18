@@ -68,12 +68,13 @@ class StandardLightTopology {
     }
 
     _findMatchingItem(actorId, lightSourceName) {
+      let result = [undefined, undefined];
       GURPS.recurselist(game.actors.get(actorId).system.equipment.carried,(item, key) => { 
-        if (item.name.toLowerCaase() === lightSourceName.toLowerCase()) {
-          return [item, key];
+        if (item.name.toLowerCase() === lightSourceName.toLowerCase()) {
+          result = [item, key];
         }
       });
-      return [undefined, undefined];
+      return result;
     }
 
     actorHasLightSource(actorId, lightSource) {

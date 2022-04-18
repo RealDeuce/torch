@@ -40,14 +40,13 @@ export default class SourceLibrary {
       }
       return library;
     } else {
-      mergedLibrary["Default"].topology = getTopology(
-        mergedLibrary["Default"].topology, 
-        mergedLibrary["Default"].quantity);
+      mergedLibrary["default"].topology = getTopology(
+        mergedLibrary["default"].topology, 
+        mergedLibrary["default"].quantity);
 
       let defaultLibrary = mergedLibrary["default"];
-      defaultLibrary["Self"].light.bright = selfBright;
-      defaultLibrary["Self"].light.dim = selfDim;
-      defaultLibrary["Self"].image = defaultLibrary.topology.getImage(defaultLibrary["Self"]);
+      defaultLibrary.sources["Self"].light[0].bright = selfBright;
+      defaultLibrary.sources["Self"].light[0].dim = selfDim;
       return new SourceLibrary(defaultLibrary);
     }
   }
