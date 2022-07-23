@@ -16,5 +16,7 @@
 	"torch.playerUsesInventory.name": "Player Uses Inventory",
 	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
 	"torch.gameLightSources.name": "Additional Light Sources",
-	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied"
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied",
+	"torch.brightRadius.name": "Bright Light Radius",
+	"torch.dimRadius.name": "Dim Light Radius"
 }

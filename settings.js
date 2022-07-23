@@ -90,7 +90,7 @@ export default class Settings {
       type: String,
     });
     game.settings.register("torch", "brightRadius", {
-      name: game.i18n.localize("LIGHT.Bright"),
+      name: game.i18n.localize("torch.brightRadius.name"),
       hint: game.i18n.localize("torch.brightRadius.hint"),
       scope: "world",
       config: true,
@@ -98,7 +98,7 @@ export default class Settings {
       type: Number,
     });
     game.settings.register("torch", "dimRadius", {
-      name: game.i18n.localize("LIGHT.Dim"),
+      name: game.i18n.localize("torch.dimRadius.name"),
       hint: game.i18n.localize("torch.dimRadius.hint"),
       scope: "world",
       config: true,
