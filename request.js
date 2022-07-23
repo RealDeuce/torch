@@ -27,13 +27,13 @@ export default class TorchRequest {
     return requestType in TorchRequest.ACTIONS;
   }
 
-  static perform(requestType, scene, token) {
-    TorchRequest.ACTIONS[requestType](scene, token);
+  static perform(requestType, scene, token, lightSettings) {
+    TorchRequest.ACTIONS[requestType](scene, token, lightSettings);
   }
 
   // Dancing lights
 
-  static async createDancingLights(scene, token) {
+  static async createDancingLights(scene, token, lightSettings) {
     let v = game.settings.get("torch", "dancingLightVision");
     let dancingLight = {
       actorData: {},
@@ -41,26 +41,29 @@ export default class TorchRequest {
       actorLink: false,
       bar1: { attribute: "" },
       bar2: { attribute: "" },
-      brightLight: 0,
-      brightSight: 0,
-      dimLight: 10,
-      dimSight: 0,
       displayBars: CONST.TOKEN_DISPLAY_MODES.NONE,
       displayName: CONST.TOKEN_DISPLAY_MODES.HOVER,
       disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
       flags: {},
       height: 1,
       hidden: false,
-      img: "systems/dnd5e/icons/spells/light-air-fire-1.jpg",
-      lightAlpha: 1,
-      lightAngle: 360,
+      light: lightSettings,
       lockRotation: false,
       name: "Dancing Light",
       randomimg: false,
       rotation: 0,
-      scale: 0.25,
+      sight: {
+        bright: 0,
+        dim: 0,
+        angle: 360
+      },
+      texture: {
+        src: "systems/dnd5e/icons/spells/light-air-fire-1.jpg",
+        scaleX: 0.25,
+        scaleY: 0.25,
+        rotation: 0
+      },
       mirrorX: false,
-      sightAngle: 360,
       vision: v,
       width: 1,
     };
@@ -79,7 +82,7 @@ export default class TorchRequest {
     });
   }
 
-  static async removeDancingLights(scene, reqToken) {
+  static async removeDancingLights(scene, reqToken, lightSettings) {
     let dltoks = [];
     scene.tokens.forEach((token) => {
       // If the token is a dancing light owned by this actor

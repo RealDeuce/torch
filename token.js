@@ -119,14 +119,14 @@ export default class TorchToken {
   // Private internal methods
 
   async _turnOffSource() {
+    let source = this._library.getLightSource(this.currentLightSource);
     if (TorchSocket.requestSupported("delete", this.currentLightSource)) {
       // separate token lighting
-      TorchSocket.sendRequest(this._token.id, "delete", this.currentLightSource);
+      TorchSocket.sendRequest(this._token.id, "delete", this.currentLightSource, source.light);
     } else {
       // self lighting - to turn off, use light settings from prototype token
       let protoToken = game.actors.get(this._token.actorId).prototypeToken;
       await this._token.update(getLightUpdates(protoToken.light));
-      let source = this._library.getLightSource(this.currentLightSource);
       if (source.consumable) {
         await this._consumeSource(source);
       }
@@ -134,12 +134,12 @@ export default class TorchToken {
   }
 
   async _turnOnSource() {
+    let source = this._library.getLightSource(this.currentLightSource);
     if (TorchSocket.requestSupported("create", this.currentLightSource)) {
       // separate token lighting
-      TorchSocket.sendRequest(this._token.id, "create", this.currentLightSource);
+      TorchSocket.sendRequest(this._token.id, "create", this.currentLightSource, source.light[0]);
     } else {
       // self lighting
-      let source = this._library.getLightSource(this.currentLightSource);
       await this._token.update(getLightUpdates(source.light[0]));
     }
   }

@@ -9,7 +9,7 @@ export default class TorchSocket {
       let scene = game.scenes.get(req.sceneId);
       let token = scene.tokens.get(req.tokenId);
       if (TorchRequest.supports(req.requestType)) {
-        await TorchRequest.perform(req.requestType, scene, token);
+        await TorchRequest.perform(req.requestType, scene, token, req.lightSettings);
       } else {
         console.warning(
           `Torch | --- Attempted unregistered socket action ${req.requestType}`
@@ -29,11 +29,12 @@ export default class TorchSocket {
    * Send a request to a user permitted to perform the operation or
    * (if you are permitted) perform it yourself.
    */
-  static async sendRequest(tokenId, action, lightSource) {
+  static async sendRequest(tokenId, action, lightSource, lightSettings) {
     let req = {
       requestType: `${action}:${lightSource}`,
       sceneId: canvas.scene.id,
       tokenId: tokenId,
+      lightSettings: lightSettings
     };
 
     if (TorchRequest.supports(req.requestType)) {
