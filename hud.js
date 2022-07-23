@@ -32,7 +32,7 @@ export default class TokenHUD {
       tbutton.addClass("fa-stack");
       tbutton.find("i").addClass("fa-stack-1x");
       disabledIcon.addClass("fa-stack-1x");
-      tbutton.append(disabledIcon);
+      tbutton.prepend(disabledIcon);
     }
     hudHtml.find(".col.left").prepend(tbutton);
     tbutton.find("i").contextmenu(async (event) => {
@@ -100,7 +100,7 @@ export default class TokenHUD {
       tbutton.addClass("fa-stack");
       tbutton.find("i").addClass("fa-stack-1x");
       disabledIcon.addClass("fa-stack-1x");
-      tbutton.append(disabledIcon);
+      tbutton.prepend(disabledIcon);
     } else if (wasDisabled && !willBeDisabled) {
       oldSlash.remove();
       tbutton.find("i").removeClass("fa-stack-1x");

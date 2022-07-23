@@ -2,7 +2,10 @@
 
 ## Middle Kingdom - v10 branch
 
-### 2.0.0 - [TBD]
+### 2.0.1 - July 24, 2022
+  - [BUGFIX] Context menu wasn't opening in HUD after exhausting a source - had to reopen HUD.
+
+### 2.0.0 - July 23, 2022
    - [BREAKING] (Lupestro) This release supports v10 of Foundry, and not v0.7, v0.8, or v9.
    - [FEATURE] (Lupestro) Now supports selection among a variety of light sources on right-click menu from torch button - a long time coming, I know.
      * Bullseye Lantern has cone beam on token facing.
