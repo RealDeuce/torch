@@ -14,10 +14,10 @@
 	"torch.holdCtrlOnClick": "Halte <span class=\"key\">Ctrl</span> beim Klick",
 	"torch.dancingLightVision.name": "Geben Sie \"Dancing Lights\" sicht.",
 	"torch.dancingLightVision.hint": "Wenn diese Option gesetzt ist, hat jedes \"Dancing Light\" sicht und kann dazu verwendet werden, Bereiche der Karte aufzudecken, die Spieler nicht sehen können.",
-	"torch.playerUsesInventory.name": "Player Uses Inventory",
-	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
-	"torch.gameLightSources.name": "Additional Light Sources",
-	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied",
-	"torch.brightRadius.name": "Bright Light Radius",
-	"torch.dimRadius.name": "Dim Light Radius"
+    "torch.playerUsesInventory.name": "Spieler verwendet Inventar",
+    "torch.playerUsesInventory.hint": "Wenn diese Option gesetzt ist, verwendet der Spieler beim Umschalten einer Fackel sein Inventar.",
+    "torch.gameLightSources.name": "Zusätzliche Lichtquellen",
+    "torch.gameLightSources.hint": "JSON Datei mit zusätzlichen Lichtquellen, die über die mitgelieferten hinaus verwendet werden sollen",
+    "torch.brightRadius.name": "Radius des hellen Licht",
+    "torch.dimRadius.name": "Radius des gedämpften Licht"
 }

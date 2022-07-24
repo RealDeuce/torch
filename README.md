@@ -75,7 +75,7 @@ The following is the current status of translation. Some features have arrived, 
 | fr    | `[##########--------]` 10/18 (56%)  | Aymeeric |
 | pt-br | `[############------]` 12/18 (67%)  | rinnocenti |
 | zh-tw | `[############------]` 12/18 (67%)  | zeteticl |
-| de    | `[############------]` 12/18 (67%)  | ToGreedy |
+| de    | `[##################]` 18/18 (100%) | ToGreedy |
 
 PRs for further translations will be dealt with promptly. While German, Japanese, and Korean are most especially desired - our translation story seems deeply incomplete without them - all others are welcome. 
 

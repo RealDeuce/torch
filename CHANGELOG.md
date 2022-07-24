@@ -3,9 +3,9 @@
 ## Middle Kingdom - v10 branch
 
 ### 2.1.0 - July 24, 2022
-  - [BUGFIX] Context menu wasn't opening in HUD after exhausting a source - had to reopen HUD.
-  - [BUGFIX] Making Dancing Lights respond to configured settings.
-  - [FEATURE] Added (partial) German translation.
+  - [BUGFIX] (Lupestro) Context menu wasn't opening in HUD after exhausting a source - had to reopen HUD.
+  - [BUGFIX] (Lupestro) Making Dancing Lights respond to configured settings.
+  - [FEATURE] (ToGreedy) German translation. 
 
 ### 2.0.0 - July 23, 2022
    - [BREAKING] (Lupestro) This release supports v10 of Foundry, and not v0.7, v0.8, or v9.
