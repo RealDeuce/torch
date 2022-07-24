@@ -3,7 +3,7 @@
 	"name": "torch",
 	"title": "Torch",
 	"description": "Torch HUD Controls",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"authors": [{ "name": "Deuce"},{ "name": "Lupestro"}],
 	"languages": [
 		{

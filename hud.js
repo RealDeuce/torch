@@ -35,7 +35,7 @@ export default class TokenHUD {
       tbutton.prepend(disabledIcon);
     }
     hudHtml.find(".col.left").prepend(tbutton);
-    tbutton.find("i").contextmenu(async (event) => {
+    tbutton.find("i.fa-fire").contextmenu(async (event) => {
       event.preventDefault();
       event.stopPropagation();
       if (token.lightSourceState === token.STATE_OFF) {
