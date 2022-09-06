@@ -6,7 +6,7 @@ let initiateWith = async function(name, item, count, assert) {
   assert.ok(foundryToken, "Token for "+ name + " found in scene");
   let library = await SourceLibrary.load("dnd5e", 10, 20);
   assert.ok(library, "Library successfully created");
-  library._presetInventory(foundryToken.actor.id, item, count);
+  await library._presetInventory(foundryToken.actor, item, count);
   return new TorchToken(foundryToken, library);
 }
 export let torchCommonTokenTests = (context) => {

@@ -27,7 +27,7 @@ export default class TorchToken {
   constructor(token, library) {
     this._token = token;
     this._library = library;
-    this._ownedSources = library.actorLightSources(this._token.actorId);
+    this._ownedSources = library.actorLightSources(this._token.actor);
   }
 
   get ownedLightSources() {
@@ -72,7 +72,7 @@ export default class TorchToken {
 
   lightSourceIsExhausted(source) {
     if (this._library.getLightSource(source).consumable) {
-      let inventory = this._library.getInventory(this._token.actorId, source);
+      let inventory = this._library.getInventory(this._token.actor, source);
       return inventory === 0;
     }
     return false;
@@ -154,9 +154,9 @@ export default class TorchToken {
   async _consumeSource(source) {
     if ((game.user.isGM && Settings.gmUsesInventory) || 
        (!game.user.isGM && Settings.userUsesInventory)) {
-      let count = this._library.getInventory(this._token.actorId, source.name);
+      let count = this._library.getInventory(this._token.actor, source.name);
       if (count) {
-        await this._library.decrementInventory(this._token.actorId, source.name);
+        await this._library.decrementInventory(this._token.actor, source.name);
       }
     }
   }

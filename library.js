@@ -65,32 +65,32 @@ export default class SourceLibrary {
     }
     return;
   }
-  getInventory(actorId, lightSourceName) {
+  getInventory(actor, lightSourceName) {
     let source = this.getLightSource(lightSourceName);
-    return this.library.topology.getInventory(actorId, source);
+    return this.library.topology.getInventory(actor, source);
   }
-  async _presetInventory(actorId, lightSourceName, quantity) { // For testing
+  async _presetInventory(actor, lightSourceName, quantity) { // For testing
     let source = this.getLightSource(lightSourceName);
-    return this.library.topology.setInventory(actorId, source, quantity);
+    return this.library.topology.setInventory(actor, source, quantity);
   }
-  async decrementInventory(actorId, lightSourceName) {
+  async decrementInventory(actor, lightSourceName) {
     let source = this.getLightSource(lightSourceName);
-    return this.library.topology.decrementInventory(actorId, source);
+    return this.library.topology.decrementInventory(actor, source);
   }
-  getImage(actorId, lightSourceName) {
+  getImage(actor, lightSourceName) {
     let source = this.getLightSource(lightSourceName);
-    return this.library.topology.getImage(actorId, source);
+    return this.library.topology.getImage(actor, source);
   }
-  actorHasLightSource(actorId, lightSourceName) {
+  actorHasLightSource(actor, lightSourceName) {
     let source = this.getLightSource(lightSourceName);
-    return this.library.topology.actorHasLightSource(actorId, source);
+    return this.library.topology.actorHasLightSource(actor, source);
   }
-  actorLightSources(actorId) {
+  actorLightSources(actor) {
     let result = []
     for (let source in this.library.sources) {
-      if (this.library.topology.actorHasLightSource(actorId, this.library.sources[source])) {
+      if (this.library.topology.actorHasLightSource(actor, this.library.sources[source])) {
         let actorSource = Object.assign({
-          image: this.library.topology.getImage(actorId, this.library.sources[source])
+          image: this.library.topology.getImage(actor, this.library.sources[source])
         }, this.library.sources[source]);
         result.push(actorSource);
       }

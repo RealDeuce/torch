@@ -2,6 +2,11 @@
 
 ## Middle Kingdom - v10 branch
 
+### 2.1.1 - September 6, 2022
+  - [BUGFIX] (Lupestro) Fixed issue where unlinked tokens were adjusting inventory on source token.
+  - [BUGFIX] (Lupestro) Fixed designation of which stock light sources are consumable in GURPS
+  - [BUGFIX] (Lupestro) Adjusted manifest to use strings for minimumCoreVersion and compatibility values.
+  
 ### 2.1.0 - July 24, 2022
   - [BUGFIX] (Lupestro) Context menu wasn't opening in HUD after exhausting a source - had to reopen HUD.
   - [BUGFIX] (Lupestro) Making Dancing Lights respond to configured settings.
