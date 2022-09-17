@@ -2,6 +2,10 @@
 
 ## Middle Kingdom - v10 branch
 
+### 2.1.2 - September 14, 2022
+  - [BUGFIX] Fixed image used for dancing lights
+  - [BUGFIX] Reset precedence order to user-supplied light sources first, then the source in config settings, then module-provided defaults based on game rules.
+
 ### 2.1.1 - September 6, 2022
   - [BUGFIX] (Lupestro) Fixed issue where unlinked tokens were adjusting inventory on source token.
   - [BUGFIX] (Lupestro) Fixed designation of which stock light sources are consumable in GURPS

@@ -58,7 +58,7 @@ export default class TorchRequest {
         angle: 360
       },
       texture: {
-        src: "systems/dnd5e/icons/spells/light-air-fire-1.jpg",
+        src: "icons/magic/light/explosion-star-glow-orange.webp",
         scaleX: 0.25,
         scaleY: 0.25,
         rotation: 0

@@ -15,13 +15,20 @@ export default class SourceLibrary {
       SourceLibrary.commonLibrary = await fetch('/modules/torch/sources.json')
         .then( response => { return response.json(); });
     }
+    let configuredLight = { 
+      system: systemId,
+      name: selfItem, 
+      states: 2,
+      light: [ {bright: selfBright, dim:selfDim, angle:360} ]
+    };
     // The user library reloads every time you open the HUD to permit cut and try.
     let mergedLibrary = userLibrary ? await fetch(userLibrary)
       .then( response => { return response.json(); })
-      .then( userData => { return mergeLibraries (userData, SourceLibrary.commonLibrary); })
+      .then( userData => { return mergeLibraries (userData, SourceLibrary.commonLibrary, configuredLight); })
       .catch(reason => {
         console.warn("Failed loading user library: ", reason);
-      }) : mergeLibraries ({}, SourceLibrary.commonLibrary);
+      }) : mergeLibraries (
+        {}, SourceLibrary.commonLibrary, configuredLight);
     // All local changes here take place against the merged data, which is a copy, 
     // not against the common or user libraries.
     if (mergedLibrary[systemId]) {
@@ -29,15 +36,6 @@ export default class SourceLibrary {
         mergedLibrary[systemId].topology, 
         mergedLibrary[systemId].quantity);
       let library = new SourceLibrary(mergedLibrary[systemId]);
-      let targetLightSource = library.getLightSource(selfItem);
-      if (targetLightSource) {
-        targetLightSource.states = 2;
-        targetLightSource.light = [{
-          bright: selfBright,
-          dim: selfDim,
-          angle: 360
-        }];
-      }
       return library;
     } else {
       mergedLibrary["default"].topology = getTopology(
@@ -102,7 +100,7 @@ export default class SourceLibrary {
 /* 
  * Create a merged copy of two libraries.
  */
-let mergeLibraries = function (userLibrary, commonLibrary) {
+let mergeLibraries = function (userLibrary, commonLibrary, configuredLight) {
   let mergedLibrary = {}
 
   // Merge systems - system properties come from common library unless the system only exists in user library
@@ -141,9 +139,47 @@ let mergeLibraries = function (userLibrary, commonLibrary) {
         };
       }
     }
+    // Source properties for configured source override common library but not user library
+    let configuredName = "";
+    if (configuredLight.name) {
+      let inUserLibrary = false;
+      let template = null;
+      if (system === configuredLight.system) {
+        for (let source in mergedLibrary[system].sources) {
+          if (source.toLowerCase() === configuredLight.name.toLowerCase()) {
+            inUserLibrary = true;
+            break;
+          }
+        }
+        if (!inUserLibrary) {
+          for (let source in commonLibrary[system].sources) {
+            if (source.toLowerCase() === configuredLight.name.toLowerCase()) {
+              configuredName = source;
+              template = commonLibrary[system].sources[source];
+              break;
+            }
+          }
+          if (!configuredName) { 
+            configuredName = configuredLight.name; //But might be blank
+          }
+          // We finally have the best name to use and perhaps a template
+          // We can build one
+          mergedLibrary[system].sources[configuredName] = {
+            "name": configuredName,
+            "type": template ? template["type"] :"equipment",
+            "consumable": template ? template["consumable"] : true,
+            "states": configuredLight.states,
+            "light": Object.assign({}, configuredLight.light )
+          };          
+        }
+      }
+    }
+    // Finally, we will deal with the common library for whatever is left
     if (system in commonLibrary) {
       for (let source in commonLibrary[system].sources) {
-        if (!userLibrary || !(system in userLibrary) || !(source in userLibrary[system].sources)) {
+        if ((!userLibrary || !(system in userLibrary) || 
+             !(source in userLibrary[system].sources)) &&  
+             (!configuredName || source !== configuredName)) {
           let commonSource = commonLibrary[system].sources[source];
           mergedLibrary[system].sources[source] = {
             "name": commonSource["name"],
