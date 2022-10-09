@@ -9,17 +9,20 @@ export default class SourceLibrary {
     this.library = library;
   }
   
-  static async load(systemId, selfBright, selfDim, selfItem, userLibrary) {
+  static async load(systemId, selfBright, selfDim, selfItem, userLibrary, protoLight) {
     // The common library is cached - to update it, you must reload the game.
     if (!SourceLibrary.commonLibrary) {
       SourceLibrary.commonLibrary = await fetch('/modules/torch/sources.json')
         .then( response => { return response.json(); });
     }
+    let defaultLight = Object.assign({}, protoLight);
+    defaultLight.bright = selfBright;
+    defaultLight.dim = selfDim;
     let configuredLight = { 
       system: systemId,
       name: selfItem, 
       states: 2,
-      light: [ {bright: selfBright, dim:selfDim, angle:360} ]
+      light: [ defaultLight ]
     };
     // The user library reloads every time you open the HUD to permit cut and try.
     let mergedLibrary = userLibrary ? await fetch(userLibrary)
@@ -151,7 +154,7 @@ let mergeLibraries = function (userLibrary, commonLibrary, configuredLight) {
             break;
           }
         }
-        if (!inUserLibrary) {
+        if (!inUserLibrary && commonLibrary[system]) {
           for (let source in commonLibrary[system].sources) {
             if (source.toLowerCase() === configuredLight.name.toLowerCase()) {
               configuredName = source;
@@ -169,7 +172,7 @@ let mergeLibraries = function (userLibrary, commonLibrary, configuredLight) {
             "type": template ? template["type"] :"equipment",
             "consumable": template ? template["consumable"] : true,
             "states": configuredLight.states,
-            "light": Object.assign({}, configuredLight.light )
+            "light": configuredLight.light
           };          
         }
       }

@@ -1,4 +1,5 @@
 {
+	"I18N.LANGUAGE": "正體中文",
     "I18N.MAINTAINERS": ["Chivell"],
     
     "torch.playerTorches.name": "玩家火炬",

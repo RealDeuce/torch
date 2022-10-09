@@ -31,6 +31,7 @@ class Torch {
       Settings.lightRadii.dim, 
       Settings.inventoryItemName, 
       Settings.gameLightSources, 
+      hud.object.actor.prototypeToken.light,
     );
     let token = new TorchToken(hud.object.document, library);
     let lightSources = token.ownedLightSources;

@@ -2,6 +2,11 @@
 
 ## Middle Kingdom - v10 branch
 
+### 2.1.3 - October 8, 2022
+  - [BUGFIX] Corrected issue (found by vkdolea) where user-supplied sources for new systems weren't processing properly.
+  - [BUGFIX] Now pulling non-dim/bright light properties for the light source configured in settings from the prototype token.
+  - [BUGFIX] Fixed the translation files for several languages.
+
 ### 2.1.2 - September 14, 2022
   - [BUGFIX] Fixed image used for dancing lights
   - [BUGFIX] Reset precedence order to user-supplied light sources first, then the source in config settings, then module-provided defaults based on game rules.

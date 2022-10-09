@@ -1,4 +1,5 @@
 {
+	"I18N.LANGUAGE": "Português (Brasil)",
 	"I18N.MAINTAINERS": ["Innocenti"],
 
 	"torch.playerTorches.name": "Tocha dos jogadores",
