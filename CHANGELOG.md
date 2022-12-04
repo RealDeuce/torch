@@ -2,6 +2,16 @@
 
 ## Middle Kingdom - v10 branch
 
+### 2.1.4 - December 4, 2022
+  - [BUGFIX] DnD5e Bullseye Lantern had wrong dim/bright ranges due to copy/paste error.
+  - [BUGFIX] Bullseye lanterns in all systems that had 53 degree radius, now have 57 degree radius.
+     * 53 degrees is technically correct for a cone (n units wide at center distance n, per rules).
+     * 57 degrees (1 radian) would be correct for a (spherical) sector of radius n and arc length n.
+     * Foundry projects light radially, so you get a spherical sector, regardless of the game rules.
+     * Using 57 degrees is the fairest solution available within Foundry's constraints.
+       * The extra beam width compensates for what you lose in the corners that radial light won't reach.
+     * You can always reduce it back to 53 degrees with a custom JSON, of course, if you feel strongly about it.
+
 ### 2.1.3 - October 8, 2022
   - [BUGFIX] Corrected issue (found by vkdolea) where user-supplied sources for new systems weren't processing properly.
   - [BUGFIX] Now pulling non-dim/bright light properties for the light source configured in settings from the prototype token.
