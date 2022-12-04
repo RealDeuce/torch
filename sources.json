@@ -37,7 +37,7 @@
         "consumable": false,
         "states": 2,
         "light": [
-          { "bright": 15, "dim": 45, "angle": 53 }
+          { "bright": 60, "dim": 120, "angle": 57 }
         ]
       },
       "Hooded Lantern": {
@@ -151,7 +151,7 @@
         "consumable": false,
         "states": 2,
         "light": [
-          {"bright": 60, "dim": 120, "angle": 53}
+          {"bright": 60, "dim": 120, "angle": 57}
         ]
       },
       "Hooded Lantern": {
@@ -169,7 +169,7 @@
         "consumable": false,
         "states": 2,
         "light": [
-          {"bright": 30, "dim": 60, "angle": 53}
+          {"bright": 30, "dim": 60, "angle": 57}
         ]
       },
       "Torch": {
@@ -213,7 +213,7 @@
         "consumable": false,
         "states": 2,
         "light": [
-          {"bright": 60, "dim": 120, "angle": 53}
+          {"bright": 60, "dim": 120, "angle": 57}
         ]
       },
       "Torch": {
@@ -345,7 +345,7 @@
         "consumable": false,
         "states": 2,
         "light": [
-          {"bright": 9, "dim": 10, "angle": 53, "color": "#ff9329", "alpha": 1 }
+          {"bright": 9, "dim": 10, "angle": 57, "color": "#ff9329", "alpha": 1 }
         ]    
       },
       "Electric Lantern, Small": {
