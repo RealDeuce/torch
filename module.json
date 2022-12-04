@@ -1,48 +1,75 @@
 {
-	"name": "torch",
-	"title": "Torch",
-	"description": "Torch HUD Controls",
-	"version": "1.4.4",
-	"author": "Deuce",
-	"languages": [
-		{
-			"lang": "en",
-			"name": "English",
-			"path": "./lang/en.json"
-		},
-		{
-			"lang": "cn",
-			"name": "中文",
-			"path": "./lang/cn.json"
-		},
-		{
-			"lang": "fr",
-			"name": "Français",
-			"path": "./lang/fr.json"
-		},
-		{
-			"lang": "es",
-			"name": "Español",
-			"path": "./lang/es.json"
-		},
-		{
-			"lang": "pt-br",
-			"name": "Português (Brasil)",
-			"path": "./lang/pt-BR.json"
-		},
-		{
-			"lang": "zh-tw",
-			"name": "正體中文",
-			"path": "./lang/zh-TW.json"
-	   }
-	],
-	"esmodules": ["./torch.js"],
-	"socket": true,
-	"styles": [],
-	"packs": [],
-	"manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/module.json",
-	"download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/master/torch.zip",
-	"url": "https://github.com/League-of-Foundry-Developers/torch",
-	"minimumCoreVersion": "0.7.5",
-	"compatibleCoreVersion": "9"
+  "id": "torch",
+  "title": "Torch",
+  "description": "Torch HUD Controls",
+  "version": "2.1.4",
+  "authors": [
+    {
+      "name": "Deuce",
+      "flags": {}
+    },
+    {
+      "name": "Lupestro",
+      "flags": {}
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "cn",
+      "name": "中文",
+      "path": "lang/cn.json",
+      "flags": {}
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json",
+      "flags": {}
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json",
+      "flags": {}
+    },
+    {
+      "lang": "zh-TW",
+      "name": "正體中文",
+      "path": "lang/zh-TW.json",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "torch.js"
+  ],
+  "socket": true,
+  "styles": [
+    "torch.css"
+  ],
+  "manifest": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/v10/module.json",
+  "download": "https://raw.githubusercontent.com/League-of-Foundry-Developers/torch/v10/torch.zip",
+  "url": "https://github.com/League-of-Foundry-Developers/torch",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10.291",
+    "maximum": "10"
+  }
 }

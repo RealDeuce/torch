@@ -10,12 +10,14 @@
 	"torch.gmUsesInventory.hint": "Si se activa, cuando el GM activa una antorcha, se usará el inventario del actor seleccionado",
 	"torch.gmInventoryItemName.name": "Nombre del objeto en el inventario",
 	"torch.gmInventoryItemName.hint": "Nombre del objeto en el inventario cuando se active \"GM Usa el Inventario\"",
-	"torch.offBrightRadius.name": "Emisión brillante en apagado",
-	"torch.offBrightRadius.hint": "Número de unidades en la rejilla en las que se emite luz brillante cuando está apagada",
-	"torch.offDimRadius.name": "Emisión tenue en apagado",
-	"torch.offDimRadius.hint": "Número de unidades en la rejilla en las que se emite luz tenue cuando está apagada",
 	"torch.turnOffAllLights": "Forzar a valores \"off\" tanto en la emisión brillante como en la tenue",
 	"torch.holdCtrlOnClick": "Mantenga pulsado <span class=\"key\">CTRL</span> al hacer clic",
 	"torch.dancingLightVision.name": "Dar visión a las luces danzantes",
-	"torch.dancingLightVision.hint": "Cuando esté habilitado, cada luz danzante tendrá visión, de modo que se pueda usar para revelar áreas del mapa que los jugadores no puedan ver"
+	"torch.dancingLightVision.hint": "Cuando esté habilitado, cada luz danzante tendrá visión, de modo que se pueda usar para revelar áreas del mapa que los jugadores no puedan ver",
+	"torch.playerUsesInventory.name": "Player Uses Inventory",
+	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
+	"torch.gameLightSources.name": "Additional Light Sources",
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied",
+	"torch.brightRadius.name": "Bright Light Radius",
+	"torch.dimRadius.name": "Dim Light Radius"
 }

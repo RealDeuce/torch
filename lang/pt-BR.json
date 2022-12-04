@@ -1,4 +1,5 @@
 {
+	"I18N.LANGUAGE": "Português (Brasil)",
 	"I18N.MAINTAINERS": ["Innocenti"],
 
 	"torch.playerTorches.name": "Tocha dos jogadores",
@@ -9,12 +10,14 @@
 	"torch.gmUsesInventory.hint": "se ligado, quando o GM acende uma tocha, isso usará o inventário do jogador.",
 	"torch.gmInventoryItemName.name": "Nome do item no inventário a ser usado",
 	"torch.gmInventoryItemName.hint": "Nome do item do iventário a ser usado se o \"MJ Usa o Inventário\" estiver ligado.",
-	"torch.offBrightRadius.name": "Emissão de luz plena quando desligado",
-	"torch.offBrightRadius.hint": "Quantas unidades de luz plena é emitida quando a luz for desligada.",
-	"torch.offDimRadius.name": "Emissão de luz reduzida quando desligado",
-	"torch.offDimRadius.hint": "Quantas unidades de luz reduzida é emitida quando a luz for desligada.",
 	"torch.turnOffAllLights": "Força luz plena e reduzida aos valores configurados em \"desligada\".",
 	"torch.holdCtrlOnClick": "Segure <span class=\"key\">Ctrl</span> ao Clicar",
 	"torch.dancingLightVision.name": "Dar Visão de Luz Dançantes.", 
-	"torch.dancingLightVision.hint": "Quando ativado, cada luz dançante que tiver visão pode ser usado para revelar areas do mapa que os jogadores não podem ver realmente."
+	"torch.dancingLightVision.hint": "Quando ativado, cada luz dançante que tiver visão pode ser usado para revelar areas do mapa que os jogadores não podem ver realmente.",
+	"torch.playerUsesInventory.name": "Player Uses Inventory",
+	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
+	"torch.gameLightSources.name": "Additional Light Sources",
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied",
+	"torch.brightRadius.name": "Bright Light Radius",
+	"torch.dimRadius.name": "Dim Light Radius"
 }

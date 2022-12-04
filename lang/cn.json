@@ -1,4 +1,5 @@
 {
+	"I18N.LANGUAGE": "中文",
 	"I18N.MAINTAINERS": ["Chivell"],
 
 	"torch.playerTorches.name": "玩家火炬",
@@ -7,10 +8,16 @@
 	"torch.dimRadius.hint": "发出多少格单位的微光。",
 	"torch.gmUsesInventory.name": "使用库存",
 	"torch.gmUsesInventory.hint": "当GM开关火炬时，将使用角色库存。",
-	"torch.offBrightRadius.name": "关闭时发出亮光",
-	"torch.offBrightRadius.hint": "关闭时发出多少格单位的亮光。",
-	"torch.offDimRadius.name": "关闭时发出微光。",
-	"torch.offDimRadius.hint": "关闭时发出多少格单位的微光。",
+	"torch.gmInventoryItemName.name": "Inventory item name to use",
+	"torch.gmInventoryItemName.hint": "Name of the inventory item to use if \"GM Uses Inventory\" is set.",
 	"torch.turnOffAllLights": "强制亮/微光设置为OFF",
-	"torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 点击"
+	"torch.holdCtrlOnClick": "按住 <span class=\"key\">Ctrl</span> 点击",
+	"torch.dancingLightVision.name": "Give Dancing Lights Vision.",
+	"torch.dancingLightVision.hint": "When enabled, each dancing light has vision so can be used to reveal areas of the map players can't actually see.",
+	"torch.playerUsesInventory.name": "Player Uses Inventory",
+	"torch.playerUsesInventory.hint": "If set, when the player toggles a torch, it will use the actors inventory.",
+	"torch.gameLightSources.name": "Additional Light Sources",
+	"torch.gameLightSources.hint": "JSON file containing additional light sources to use beyond those supplied",
+	"torch.brightRadius.name": "Bright Light Radius",
+	"torch.dimRadius.name": "Dim Light Radius"
 }

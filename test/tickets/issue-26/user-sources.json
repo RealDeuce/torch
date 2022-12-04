@@ -1,0 +1,32 @@
+{
+    "age-system": {
+      "system": "age-system",
+      "topology": "standard",
+      "quantity" : "quantity",
+      "sources": {
+        "Lanterna": {
+          "name": "Lanterna",
+          "type": "equipment",
+          "consumable": false,
+          "states": 2,
+          "light": [
+            { 
+              "bright": 10, "dim": 15, "angle": 30, "color": "#ff9329", "alpha": 0.5,
+              "animation": { "type": "torch", "speed": 5, "intensity": 5, "reverse": false } 
+            }
+          ]
+        },
+        "Visão Noturna": {
+            "name": "Visão Noturna",
+            "type": "equipment",
+            "consumable": false,
+            "states": 2,
+            "light": [{
+                "bright": 1000, "dim": 1000, "angle": 360, "color": "#184601", "alpha": 0.4,
+                "animation": { "type": "none", "speed": 5, "intensity": 5, "reverse": false },
+                "light": {"luminosity": 0.3}
+            }]
+        }
+      }
+    }
+}
